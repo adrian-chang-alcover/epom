@@ -40,9 +40,10 @@ module Epom
               :method => :post
           },
           :set_site_pricing => {
-              :url => '/rest-api/sites/SITE_ID/pricing.do',
+              :url => '/rest-api/sites/SITE_ID/pricing.do?username=USERNAME&timestamp=TIMESTAMP&hash=HASH',
               :parameters => [:siteId, :paymentModel, :hash, :timestamp, :username, :revenueShare, :pricingType, :price ],
-              :method => :post
+              :method => :post,
+              :headers => {'Content-type' => 'application/json'}
           },
           :set_placement_pricing => {
               :url => '/rest-api/placements/PLACEMENT_ID/pricing.do',
@@ -63,6 +64,9 @@ module Epom
     end
 
     def self.replace_string_identifiers(url, params)
+      url.gsub!('USERNAME', params[:username].to_s) if url.include?('USERNAME')
+      url.gsub!('TIMESTAMP', params[:timestamp].to_s) if url.include?('TIMESTAMP')
+      url.gsub!('HASH', params[:hash].to_s) if url.include?('HASH')
       url.gsub!('SITE_ID', params[:siteId].to_s) if url.include?('SITE_ID')
       url.gsub!('PLACEMENT_ID', params[:placementId].to_s) if url.include?('PLACEMENT_ID')
       url

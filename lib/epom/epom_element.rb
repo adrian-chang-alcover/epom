@@ -24,8 +24,10 @@ module Epom
       
       valid = generic_validation(params, api_params)
       method = hash[:method]
+      headers hash[:headers] if hash[:headers]
+
       if valid
-        response = send(method, url, :query => params)
+        response = send(method, url, :query => '{"paymentModel":"FIXED_PRICE","pricingType":"CPM","price":3.5}')
         if response.success?
           return response.parsed_response
         else
