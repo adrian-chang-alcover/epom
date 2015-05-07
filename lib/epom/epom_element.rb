@@ -16,18 +16,19 @@ module Epom
       params.keys.all? {|key| api_params.include?(key)}
     end
 
-    def self.generic_method(method_name, params)
-      hash = extended_parameters[method_name]
-      url = hash[:url]
-      api_params = hash[:parameters]
+    def self.generic_method(method_name, url_params, body_params)
+      signature = extended_parameters[method_name]
+      url_params_signature = signature[:url_parameters]
+      body_params_signature = signature[:body_parameters]
       url = replace_string_identifiers(url, params)
       
       valid = generic_validation(params, api_params)
-      method = hash[:method]
-      headers hash[:headers] if hash[:headers]
+      url = signature[:url]
+      method = signature[:method]
+      headers signature[:headers] if signature[:headers]
 
       if valid
-        response = send(method, url, :query => '{"paymentModel":"FIXED_PRICE","pricingType":"CPM","price":3.5}')
+        response = send(method, url, :query => params)
         if response.success?
           return response.parsed_response
         else
@@ -38,7 +39,7 @@ module Epom
       end
     end
 
-    def self.replace_string_identifiers(url, params)
+    def self.replace_params_in_url(url, url_params)
       url
     end
 
