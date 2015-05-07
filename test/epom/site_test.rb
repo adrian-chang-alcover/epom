@@ -2,61 +2,64 @@ require 'test_helper'
 require 'epom/site'
 
 class SiteTest < ActiveSupport::TestCase
-	# test "truth" do
- #    assert_kind_of Class, Epom::Site
- #  end
+	test "truth" do
+    assert_kind_of Class, Epom::Site
+  end
 
- #  test "get_sites" do
- #  	timestamp = Time.now.to_i * 1000
- #    params = {
- #  		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
- #  		:timestamp => timestamp, 
- #  		:username => ENV['username'],
- #    }
+  test "get_sites" do
+  	timestamp = Time.now.to_i * 1000
+    body_params = {
+  		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  		:timestamp => timestamp, 
+  		:username => ENV['username'],
+    }
+    url_params = {}
 
- #  	response = Epom::Site.get_sites(params)
- #    assert_instance_of Array, response
- #    if response.count > 0
- #      first = response.first
- #      assert_instance_of Hash, first
- #      assert_instance_of Fixnum, first['id']
- #      assert_instance_of String, first['name']
- #    end
- #  end
+  	response = Epom::Site.get_sites(url, params, body_params)
+    assert_instance_of Array, response
+    if response.count > 0
+      first = response.first
+      assert_instance_of Hash, first
+      assert_instance_of Fixnum, first['id']
+      assert_instance_of String, first['name']
+    end
+  end
 
- #  test "get_site_cpm_threshold_summary" do
- #    timestamp = Time.now.to_i * 1000
- #    params = {
- #      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
- #      :timestamp => timestamp, 
- #      :username => ENV['username'],
- #      :siteId => ENV['site_id']
- #    }
+  test "get_site_cpm_threshold_summary" do
+    timestamp = Time.now.to_i * 1000
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :siteId => ENV['site_id']
+    }
+    url_params = {}
 
- #    response = Epom::Site.get_site_cpm_threshold_summary(params)
- #    assert_instance_of Array, response
- #    if response.count > 0
- #      first = response.first
- #      assert_instance_of Hash, first
- #      assert_instance_of Float, first['cpmThreshold']
- #    end
- #  end
+    response = Epom::Site.get_site_cpm_threshold_summary(url, params, body_params)
+    assert_instance_of Array, response
+    if response.count > 0
+      first = response.first
+      assert_instance_of Hash, first
+      assert_instance_of Float, first['cpmThreshold']
+    end
+  end
 
- #  test "get_site_pricing" do
- #    timestamp = Time.now.to_i * 1000
- #    params = {
- #      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
- #      :timestamp => timestamp, 
- #      :username => ENV['username'],
- #      :siteId => ENV['site_id']
- #    }
+  test "get_site_pricing" do
+    timestamp = Time.now.to_i * 1000
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :siteId => ENV['site_id']
+    }
+    url_params = {}
 
- #    response = Epom::Site.get_site_pricing(params)
- #    assert_instance_of Hash, response
- #    assert_instance_of String, response['paymentModel']
- #    assert_instance_of Float, response['price']
- #    assert_instance_of String, response['pricingType']
- #  end
+    response = Epom::Site.get_site_pricing(url, params, body_params)
+    assert_instance_of Hash, response
+    assert_instance_of String, response['paymentModel']
+    assert_instance_of Float, response['price']
+    assert_instance_of String, response['pricingType']
+  end
 
   test "set_site_pricing" do
     timestamp = Time.now.to_i * 1000
