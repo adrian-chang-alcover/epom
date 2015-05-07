@@ -60,15 +60,17 @@ class SiteTest < ActiveSupport::TestCase
 
   test "set_site_pricing" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    url_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
-      :siteId => ENV['site_id'],
-      :paymentModel => "{\"paymentModel\":\"FIXED_PRICE\",\"pricingType\":\"CPM\",\"price\":2.0}"
+      :siteId => ENV['site_id']
     }
+    body_params = '{"paymentModel":"FIXED_PRICE","pricingType":"CPM","price":4.2}'
 
-    response = Epom::Site.set_site_pricing(params)
+    response = Epom::Site.set_site_pricing(url_params, body_params)
+    assert_instance_of Hash, response
+    assert response['success']
   end
 
  #  test "set_placement_pricing" do

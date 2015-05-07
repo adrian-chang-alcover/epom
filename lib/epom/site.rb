@@ -2,7 +2,7 @@ require 'epom/epom_element'
 
 module Epom
   class Site < EpomElement
-    def self.extended_parameters
+    def self.extended_methods
       {
           :delete_site => {
               :url => '/rest-api/sites/SITE_ID/delete.do',
