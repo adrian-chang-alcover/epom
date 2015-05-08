@@ -11,7 +11,7 @@ class BannerTest < ActiveSupport::TestCase
 
   test "create_banner" do
   	timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
   		:campaignId => ENV['campaign_id'], 
   		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
   		:timestamp => timestamp, 
@@ -34,7 +34,7 @@ class BannerTest < ActiveSupport::TestCase
       :adUnitHeight => 100
     }
 
-  	response = Epom::Banner.create_banner(params)
+  	response = Epom::Banner.create_banner({}, body_params)
     assert_instance_of Hash, response
     assert_instance_of Fixnum, response['id']
     assert_instance_of Fixnum, response['campaignId']
@@ -43,14 +43,14 @@ class BannerTest < ActiveSupport::TestCase
 
   test "get_banner_ad_unit_values" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
       :placementType => Epom::PlacementType::SITE_PLACEMENT
     }
 
-    response = Epom::Banner.get_banner_ad_unit_values(params)
+    response = Epom::Banner.get_banner_ad_unit_values({}, body_params)
     assert_instance_of Array, response
     if response.count > 0
       first = response.first
@@ -63,14 +63,16 @@ class BannerTest < ActiveSupport::TestCase
 
   test "get_banner_pricing" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
+    }
+    url_params = {
       :bannerId => ENV['banner_id']
     }
 
-    response = Epom::Banner.get_banner_pricing(params)
+    response = Epom::Banner.get_banner_pricing(url_params, body_params)
     assert_instance_of Hash, response
     assert_instance_of Fixnum, response['id']
     assert_instance_of String, response['paymentModel']
@@ -78,14 +80,16 @@ class BannerTest < ActiveSupport::TestCase
 
   test "get_placements_for_banner" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
+    }
+    url_params = {
       :bannerId => ENV['banner_id']
     }
 
-    response = Epom::Banner.get_placements_for_banner(params)
+    response = Epom::Banner.get_placements_for_banner(url_params, body_params)
     assert_instance_of Array, response
     if response.count > 0
       first = response[0]
@@ -97,14 +101,16 @@ class BannerTest < ActiveSupport::TestCase
 
   test "get_targetings" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
+    }
+    url_params = {
       :bannerId => ENV['banner_id']
     }
 
-    response = Epom::Banner.get_targetings(params)
+    response = Epom::Banner.get_targetings(url_params, body_params)
     assert_instance_of Array, response
     if response.count > 0
       first = response[0]
@@ -117,13 +123,13 @@ class BannerTest < ActiveSupport::TestCase
 
   test "get_advertising_categories" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
     }
 
-    response = Epom::Banner.get_advertising_categories(params)
+    response = Epom::Banner.get_advertising_categories({}, body_params)
     assert_instance_of Array, response
     if response.count > 0
       first = response[0]
@@ -135,14 +141,16 @@ class BannerTest < ActiveSupport::TestCase
 
   test "get_banner" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
+    }
+    url_params = {
       :bannerId => ENV['banner_id']
     }
 
-    response = Epom::Banner.get_banner(params)
+    response = Epom::Banner.get_banner(url_params, body_params)
     assert_instance_of Hash, response
     assert_instance_of Fixnum, response['campaignId']
     assert_instance_of String, response['url']
@@ -154,13 +162,13 @@ class BannerTest < ActiveSupport::TestCase
 
   test "get_publishing_categories" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
     }
 
-    response = Epom::Banner.get_publishing_categories(params)
+    response = Epom::Banner.get_publishing_categories({}, body_params)
     assert_instance_of Array, response
     if response.count > 0
       first = response[0]
