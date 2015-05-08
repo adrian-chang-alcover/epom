@@ -14,7 +14,7 @@ class AuthTest < ActiveSupport::TestCase
 
   test "get authentication token" do
     ACCOUNTS.each do |account|
-  	  response = Epom::Auth.get_authentication_token(account)
+  	  response = Epom::Auth.get_authentication_token({}, account)
       assert_instance_of Hash, response
       assert response['success']
       assert_instance_of String, response['authToken']
@@ -23,10 +23,12 @@ class AuthTest < ActiveSupport::TestCase
 
   test "register user" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    url_params = {
       :key => ENV['public_key'],
       :hash => Epom.create_hash("advertiser_#{timestamp}", 'advertiser', "advertiser_#{timestamp}@gmail.com", ENV['private_key'], timestamp),
-      :timestamp => timestamp,
+      :timestamp => timestamp
+    }
+    body_params = {      
       :username => "advertiser_#{timestamp}",
       :password => 'advertiser',
       :email => "advertiser_#{timestamp}@gmail.com",
@@ -41,7 +43,7 @@ class AuthTest < ActiveSupport::TestCase
       :enable_market_integration => true
     }
 
-    response = Epom::Auth.register_user(params)
+    response = Epom::Auth.register_user(url_params, body_params)
     assert_instance_of Hash, response
     assert response['success']
   end

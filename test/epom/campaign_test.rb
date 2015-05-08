@@ -8,7 +8,7 @@ class CampaignTest < ActiveSupport::TestCase
 
   test "create_campaign" do
   	timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
   		:advertiserId => ENV['advertiser_id'], 
   		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
   		:timestamp => timestamp, 
@@ -17,7 +17,7 @@ class CampaignTest < ActiveSupport::TestCase
       :description => "description for campaign #{timestamp}",
       :active => true}
 
-  	response = Epom::Campaign.create_campaign(params)
+  	response = Epom::Campaign.create_campaign({}, body_params)
     assert_instance_of Hash, response
     assert_instance_of Fixnum, response['id']
     assert_instance_of String, response['name']

@@ -10,25 +10,28 @@ class AdvertiserTest < ActiveSupport::TestCase
     advertiser_id = test_create_advertiser()
 
   	timestamp = Time.now.to_i * 1000
-    params = {
-  		:advertiserId => advertiser_id, 
+    body_params = {
   		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
   		:timestamp => timestamp, 
-  		:username => ENV['username']}
+  		:username => ENV['username']
+    }
+    url_params = {
+      :advertiserId => advertiser_id
+    }
 
-  	response = Epom::Advertiser.delete_advertiser(params)
+  	response = Epom::Advertiser.delete_advertiser(url_params, body_params)
     assert_instance_of Hash, response
     assert response['success']
   end
 
   test "get_advertiser_permissions_for_user" do
     timestamp = Time.now.to_i * 1000
-  	params = {
+  	body_params = {
   		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
   		:timestamp => timestamp, 
   		:username => ENV['username']}
 
-  	response = Epom::Advertiser.get_advertiser_permissions_for_user(params)
+  	response = Epom::Advertiser.get_advertiser_permissions_for_user({}, body_params)
     assert_instance_of Array, response
     if response.count > 0
     	first = response[0]
@@ -41,13 +44,16 @@ class AdvertiserTest < ActiveSupport::TestCase
 
   test "get_campaigns_for_advertiser" do
     timestamp = Time.now.to_i * 1000
-  	params = {
-  		:advertiserId => ENV['advertiser_id'], 
+  	body_params = {
   		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
   		:timestamp => timestamp, 
-  		:username => ENV['username']}
+  		:username => ENV['username']
+    }
+    url_params = {
+      :advertiserId => ENV['advertiser_id'],       
+    }
 
-  	response = Epom::Advertiser.get_campaigns_for_advertiser(params)
+  	response = Epom::Advertiser.get_campaigns_for_advertiser(url_params, body_params)
     assert_instance_of Array, response
     if response.count > 0
     	first = response[0]
@@ -59,7 +65,7 @@ class AdvertiserTest < ActiveSupport::TestCase
 
   test "create advertiser" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
@@ -68,7 +74,7 @@ class AdvertiserTest < ActiveSupport::TestCase
       :contactEmail => "advertiser@gmail.com",
       :description => "advertiser description"}
 
-    response = Epom::Advertiser.create_advertiser(params)
+    response = Epom::Advertiser.create_advertiser({}, body_params)
     assert_instance_of Hash, response
     assert response['success']
     assert_instance_of Fixnum, response['id']
