@@ -111,4 +111,24 @@ class SiteTest < ActiveSupport::TestCase
     assert response['success']
   end
 
+  test "get_sites_zones" do
+    timestamp = Time.now.to_i * 1000
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+    }
+    url_params = {
+      :siteId => ENV['site_id']
+    }
+
+    response = Epom::Site.get_sites_zones(url_params, body_params)
+    assert_instance_of Array, response
+    if response.count > 0
+      first = response[0]
+      assert_instance_of Fixnum, first['id']
+      assert_instance_of String, first['name']
+    end
+  end
+
 end
