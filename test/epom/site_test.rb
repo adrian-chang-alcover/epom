@@ -8,13 +8,14 @@ class SiteTest < ActiveSupport::TestCase
 
   test "get_sites" do
   	timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
   		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
   		:timestamp => timestamp, 
   		:username => ENV['username'],
     }
+    url_params = {}
 
-  	response = Epom::Site.get_sites(params)
+  	response = Epom::Site.get_sites(url_params, body_params)
     assert_instance_of Array, response
     if response.count > 0
       first = response.first
@@ -26,14 +27,16 @@ class SiteTest < ActiveSupport::TestCase
 
   test "get_site_cpm_threshold_summary" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
+    }
+    url_params = {
       :siteId => ENV['site_id']
     }
 
-    response = Epom::Site.get_site_cpm_threshold_summary(params)
+    response = Epom::Site.get_site_cpm_threshold_summary(url_params, body_params)
     assert_instance_of Array, response
     if response.count > 0
       first = response.first
@@ -44,14 +47,16 @@ class SiteTest < ActiveSupport::TestCase
 
   test "get_site_pricing" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
+    }
+    url_params = {
       :siteId => ENV['site_id']
     }
 
-    response = Epom::Site.get_site_pricing(params)
+    response = Epom::Site.get_site_pricing(url_params, body_params)
     assert_instance_of Hash, response
     assert_instance_of String, response['paymentModel']
     assert_instance_of Float, response['price']
@@ -60,35 +65,37 @@ class SiteTest < ActiveSupport::TestCase
 
   test "set_site_pricing" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    url_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
-      :siteId => ENV['site_id'],
-      :paymentModel => "{\"paymentModel\":\"FIXED_PRICE\",\"price\":0.0,\"pricingType\":\"CPM\"}"
-      # :price => 1,
-      # :pricingType => 'CPM'
+      :siteId => ENV['site_id']
     }
+    body_params = '{"paymentModel":"FIXED_PRICE","pricingType":"CPM","price":4.2}'
 
-    response = Epom::Site.set_site_pricing(params)
+    response = Epom::Site.set_site_pricing(url_params, body_params)
+    assert_instance_of Hash, response
+    assert response['success']
   end
 
   test "set_placement_pricing" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    url_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
       :placementId => ENV['placement_id'],
-      :paymentModel => ''
     }
+    body_params = '{"paymentModel":"FIXED_PRICE","pricingType":"CPC","price":1.2}'
 
-    response = Epom::Site.set_placement_pricing(params)
+    response = Epom::Site.set_placement_pricing(url_params, body_params)
+    assert_instance_of Hash, response
+    assert response['success']
   end
 
   test "create_site" do
     timestamp = Time.now.to_i * 1000
-    params = {
+    body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
@@ -98,7 +105,7 @@ class SiteTest < ActiveSupport::TestCase
       :categoryId => 2
     }
 
-    response = Epom::Site.create_site(params)
+    response = Epom::Site.create_site({}, body_params)
     assert_instance_of Hash, response
     assert_instance_of Fixnum, response['id']
     assert response['success']
