@@ -6,7 +6,7 @@ module Epom
     def self.extended_methods
       {
           :delete_placement => {
-              :url => '/placements/PLACEMENT_ID/delete.do',
+              :url => '/rest-api/placements/PLACEMENT_ID/delete.do',
               :url_parameters => [:placementId],
               :body_parameters => [:hash, :timestamp, :username],
               :method => :post
@@ -17,28 +17,28 @@ module Epom
               :method => :get
           },
           :update_mobile_placement => {
-              :url => '/placements/update/mobile.do',
+              :url => '/rest-api/placements/update/mobile.do',
               :body_parameters => [:id, :zoneId, :type, :name, :description, :defaultCode, :hash, :timestamp, :username],
               :method => :post
           },
           :update_non_standard_placement => {
-              :url => '/placements/update/non-standard.do',
+              :url => '/rest-api/placements/update/non-standard.do',
               :body_parameters => [:id, :zoneId, :type, :name, :description, :hash, :timestamp, :username],
               :method => :post
           },
           :create_non_standard_placement => {
-              :url => '/placements/update/standard.do',
+              :url => '/rest-api/placements/update/non-standard.do',
               :body_parameters => [:zoneId, :type, :name, :description, :hash, :timestamp, :username],
               :method => :post
           },
           :update_standard_placement => {
-              :url => '/placements/update/non-standard.do',
+              :url => '/rest-api/placements/update/standard.do',
               :body_parameters => [:id, :zoneId, :type, :name, :description, :adUnit, :height, :width, :allowVariableBannerSizes, :defaultCode, :rotateInterval, :hash, :timestamp, :username],
               :method => :post
           },
           :create_standard_placement => {
-              :url => '/placements/update/non-standard.do',
-              :body_parameters => [:zoneId, :type, :name, :description, :adUnit, :height, :width, :allowVariableBannerSizes, :defaultCode, :rotateInterval, :hash, :timestamp, :username],
+              :url => '/rest-api/placements/update/standard.do',
+              :body_parameters => [:zoneId, :type, :name, :description, :adUnit, :size, :height, :width, :allowVariableBannerSizes, :defaultCode, :rotateInterval, :hash, :timestamp, :username],
               :method => :post
           }
 

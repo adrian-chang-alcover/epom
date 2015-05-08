@@ -1,5 +1,7 @@
 require 'test_helper'
 require 'epom/placement'
+require 'epom/placement_type'
+require 'epom/ad_unit_size'
 
 class PlacementTest < ActiveSupport::TestCase
 	test "truth" do
@@ -28,5 +30,26 @@ class PlacementTest < ActiveSupport::TestCase
       assert_instance_of String, first['size']
       assert_instance_of Fixnum, first['zoneId']
     end
+  end
+
+  test "create_standard_placement" do
+    timestamp = Time.now.to_i * 1000
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :zoneId => ENV['zone_id'],
+      :type => Epom::PlacementType::SITE_PLACEMENT,
+      :name => "placement #{timestamp}",
+      :adUnit => Epom::AdUnitSize::CUSTOM_SITE_BANNER_SIZE,
+      :height => 200,
+      :width => 350,
+    }
+    url_params = {}
+
+    response = Epom::Placement.create_standard_placement(url_params, body_params)
+    assert_instance_of Hash, response
+    assert_instance_of Fixnum, response['id']
+    assert response['success']
   end
 end
