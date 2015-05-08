@@ -25,7 +25,11 @@ module Epom
       
       url = replace_params_in_url(url_signature, url_params)
       method = signature[:method]
-      headers signature[:headers] if signature[:headers]
+      if signature[:headers]
+        headers signature[:headers]
+      else
+        default_options[:headers] = {}
+      end
 
       if params_validation(url_params, url_params_signature) and params_validation(body_params, body_params_signature)
         response = send(method, url, :query => body_params)

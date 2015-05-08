@@ -53,10 +53,11 @@ module Epom
               :headers => {'Content-type' => 'application/json'}
           },
           :set_placement_pricing => {
-              :url => '/rest-api/placements/PLACEMENT_ID/pricing.do',
-              :url_parameters => [:placementId],
+              :url => '/rest-api/placements/PLACEMENT_ID/pricing.do?username=USERNAME&timestamp=TIMESTAMP&hash=HASH',
+              :url_parameters => [:placementId, :hash, :timestamp, :username],
               :body_parameters => [],
-              :method => :post
+              :method => :post,
+              :headers => {'Content-type' => 'application/json'}
           },
           :update_site => {
               :url => '/rest-api/sites/update.do',
