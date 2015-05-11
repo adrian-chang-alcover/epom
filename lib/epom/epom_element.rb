@@ -34,14 +34,6 @@ module Epom
         default_options[:headers] = {}
       end
 
-      timestamp = Time.now.to_i * 1000
-      auth_params = {
-        :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-        :timestamp => timestamp, 
-        :username => ENV['username'],
-      }
-      default_params auth_params
-
       if params_validation(url_params, url_params_signature) and params_validation(body_params, body_params_signature)
         response = send(method, url, :query => body_params)
         if response.success?
