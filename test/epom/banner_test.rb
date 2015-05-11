@@ -17,7 +17,6 @@ class BannerTest < ActiveSupport::TestCase
   		:timestamp => timestamp, 
   		:username => ENV['username'],
       :weight => 1,
-      :thirdTrackingCode => '',
       :allowNewPlacementsAutoLinking => false,
       :flashBannerLink => '',
       :imageBannerLink => "http://beachgrooves.com/wp-content/uploads/2014/07/BeachGrooves-Logos-website2.png",
