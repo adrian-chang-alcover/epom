@@ -9,12 +9,7 @@ class AdvertiserTest < ActiveSupport::TestCase
   test "delete_advertiser" do
     advertiser_id = test_create_advertiser()
 
-  	timestamp = Time.now.to_i * 1000
-    body_params = {
-  		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-  		:timestamp => timestamp, 
-  		:username => ENV['username']
-    }
+    body_params = {}
     url_params = {
       :advertiserId => advertiser_id
     }
@@ -25,11 +20,7 @@ class AdvertiserTest < ActiveSupport::TestCase
   end
 
   test "get_advertiser_permissions_for_user" do
-    timestamp = Time.now.to_i * 1000
-  	body_params = {
-  		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-  		:timestamp => timestamp, 
-  		:username => ENV['username']}
+  	body_params = {}
 
   	response = Epom::Advertiser.get_advertiser_permissions_for_user({}, body_params)
     assert_instance_of Array, response
@@ -43,12 +34,7 @@ class AdvertiserTest < ActiveSupport::TestCase
   end
 
   test "get_campaigns_for_advertiser" do
-    timestamp = Time.now.to_i * 1000
-  	body_params = {
-  		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-  		:timestamp => timestamp, 
-  		:username => ENV['username']
-    }
+  	body_params = {}
     url_params = {
       :advertiserId => ENV['advertiser_id'],       
     }
@@ -64,15 +50,12 @@ class AdvertiserTest < ActiveSupport::TestCase
   end
 
   test "create advertiser" do
-    timestamp = Time.now.to_i * 1000
     body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
-      :name => "advertiser #{timestamp}",
+      :name => "advertiser #{DateTime.now}",
       :contactName => "advertiser contactName",
       :contactEmail => "advertiser@gmail.com",
-      :description => "advertiser description"}
+      :description => "advertiser description"
+    }
 
     response = Epom::Advertiser.create_advertiser({}, body_params)
     assert_instance_of Hash, response
