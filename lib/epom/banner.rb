@@ -7,7 +7,7 @@ module Epom
 			{
 				:create_banner => {
 					:url => '/rest-api/banner/create.do',
-					:body_parameters => [:placementType, :active, :name, :allowNewPlacementsAutoLinking, :autolinkCategories, :weight, :adUnitId, :bannerType, :code, :url, :mobileAdvertisingNetwork, :mobileAdvertisingNetworkParameters, :campaignId, :hash, :timestamp, :username, :width, :height, :flashBannerLink, :imageBannerLink, :thirdTrackingCode, :adUnitWidth, :adUnitHeight],
+					:body_parameters => [:placementType, :campaignId, :active, :name, :allowNewPlacementsAutoLinking, :autolinkCategories, :weight, :adUnitId, :adUnitHeight, :adUnitWidth, :bannerType, :flashBannerLink, :imageBannerLink, :videoFileLink, :flashFile, :imageFile, :videoFile, :templateId, :thirdTrackingCodem, :code, :url, :inStreamVideoType, :mobileAdvertisingNetwork, :mobileAdvertisingNetworkParameters, :applicationOperatingSystem, :applicationAdCategory, :applicationAdvertisingNetwork, :applicationAdvertisingNetworkParameters, :hash, :timestamp, :username],
 					:method => :post
 				},
         :delete_banner => {
@@ -428,7 +428,7 @@ module Epom
         :get_banner_placements_list => {
             :url => '/rest-api/banners/BANNER_ID/placements.do',
             :url_parameters => [:bannerId],
-            :url_parameters => [:            :body_parameters => [:hash, :timestamp, :username],
+            :body_parameters => [:hash, :timestamp, :username],
             :method => :get
         },
         :disable_banner_country_pricing => {
