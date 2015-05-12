@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-# source 'file:///media/adrian/DATA/Estudios/Web/Ruby/repo/'
 
 # Declare your gem's dependencies in epom.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -10,8 +9,3 @@ gemspec
 # your gemspec. These might include edge Rails or gems from your path or
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
-
-# To use a debugger
-gem 'byebug', group: [:development, :test]
-gem 'codeclimate-test-reporter', group: :test, require: nil
-gem 'rake'
