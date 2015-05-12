@@ -4,6 +4,7 @@ PATH
     epom (0.0.1)
       httmultiparty
       rails (~> 4.2.0)
+      rake
 
 GEM
   remote: https://rubygems.org/
@@ -131,5 +132,4 @@ DEPENDENCIES
   byebug
   codeclimate-test-reporter
   epom!
-  rake
   sqlite3

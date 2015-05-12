@@ -7,19 +7,21 @@ require "epom/version"
 Gem::Specification.new do |s|
   s.name        = "epom"
   s.version     = Epom::VERSION
-  s.authors     = ["Pedro Quintero"]
-  s.email       = ["pecuerre@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Epom."
-  s.description = "TODO: Description of Epom."
+  s.authors     = ["Pedro Quintero", "Adrian Chang", "Jorge Tomás"]
+  s.email       = ["pecuerre@gmail.com", "adrian.chang.alcover@gmail.com", "jotolo7@gmail.com"]
+  s.homepage    = "https://github.com/kewelta/epom"
+  s.summary     = "Epom gem."
+  s.description = "The Epom gem is a wrapper for Epom API in ruby."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.2.0"
+  s.add_dependency 'rake'
   s.add_dependency "httmultiparty"
 
   s.add_development_dependency "sqlite3"
-  #s.add_development_dependency "codeclimate-test-reporter"
+  s.add_development_dependency "codeclimate-test-reporter"
+  s.add_development_dependency 'byebug'
 end
