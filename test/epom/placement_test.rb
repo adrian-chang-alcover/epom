@@ -1,7 +1,5 @@
 require 'test_helper'
 require 'epom/placement'
-require 'epom/placement_type'
-require 'epom/ad_unit_size'
 
 class PlacementTest < ActiveSupport::TestCase
 	test "truth" do

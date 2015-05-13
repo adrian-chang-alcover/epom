@@ -1,8 +1,5 @@
 require 'test_helper'
 require 'epom/banner'
-require 'epom/banner_type'
-require 'epom/placement_type'
-require 'epom/ad_unit_size'
 
 class BannerTest < ActiveSupport::TestCase
 	test "truth" do

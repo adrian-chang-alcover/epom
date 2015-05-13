@@ -1,4 +1,6 @@
 require 'epom/epom_element'
+require 'epom/placement_type'
+require 'epom/ad_unit_size'
 
 module Epom
   class Placement < EpomElement

@@ -1,4 +1,7 @@
 require 'epom/epom_element'
+require 'epom/banner_type'
+require 'epom/placement_type'
+require 'epom/ad_unit_size'
 
 module Epom
   class Banner < EpomElement
