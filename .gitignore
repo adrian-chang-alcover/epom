@@ -9,6 +9,7 @@ test/dummy/.sass-cache
 test/dummy/db/
 .idea/
 coverage/
+*.gem
 
 # Ignore application configuration
 /config/application.yml
