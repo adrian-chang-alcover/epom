@@ -1,6 +1,16 @@
 require 'httmultiparty'
 require 'digest'
 
+require 'epom/advertiser'
+require 'epom/auth'
+require 'epom/banner'
+require 'epom/campaign'
+require 'epom/epom_element'
+require 'epom/placement'
+require 'epom/publisher'
+require 'epom/site'
+require 'epom/zone'
+
 module Epom
 
   def self.create_hash(*args)
