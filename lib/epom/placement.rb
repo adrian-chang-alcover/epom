@@ -40,7 +40,7 @@ module Epom
           },
           :create_standard_placement => {
               :url => '/rest-api/placements/update/standard.do',
-              :body_parameters => [:zoneId, :type, :name, :description, :adUnit, :size, :height, :width, :allowVariableBannerSizes, :defaultCode, :rotateInterval, :hash, :timestamp, :username],
+              :body_parameters => [:zoneId, :type, :name, :description, :adUnitId, :size, 'size.height', 'size.width', :allowVariableBannerSizes, :defaultCode, :rotateInterval, :hash, :timestamp, :username],
               :method => :post
           }
 

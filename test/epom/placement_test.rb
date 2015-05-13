@@ -30,7 +30,6 @@ class PlacementTest < ActiveSupport::TestCase
     end
   end
 
-  # TODO: create an stantard placement with CUSTOM_SITE_BANNER_SIZE
   test "create_standard_placement" do
     timestamp = Time.now.to_i * 1000
     body_params = {
@@ -40,9 +39,9 @@ class PlacementTest < ActiveSupport::TestCase
       :zoneId => ENV['zone_id'],
       :type => Epom::PlacementType::SITE_PLACEMENT,
       :name => "placement #{timestamp}",
-      :adUnit => Epom::AdUnitSize::CUSTOM_SITE_BANNER_SIZE,
-      :height => 200,
-      :width => 350,
+      :adUnitId => 10,
+      'size.height' => 200,
+      'size.width' => 350,
     }
     url_params = {}
 
