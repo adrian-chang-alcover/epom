@@ -30,6 +30,7 @@ class PlacementTest < ActiveSupport::TestCase
     end
   end
 
+  # TODO: create an stantard placement with CUSTOM_SITE_BANNER_SIZE
   test "create_standard_placement" do
     timestamp = Time.now.to_i * 1000
     body_params = {

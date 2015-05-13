@@ -6,6 +6,7 @@ class BannerTest < ActiveSupport::TestCase
     assert_kind_of Class, Epom::Banner
   end
 
+  # TODO: create banner with LOCAL_FILE and CUSTOM_SITE_BANNER_SIZE
   test "create_banner" do
   	timestamp = Time.now.to_i * 1000
     body_params = {
