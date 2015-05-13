@@ -22,6 +22,4 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "httmultiparty", '~> 0.3', '>= 0.3.6'
 
   s.add_development_dependency "sqlite3", '~> 1.3', '>= 1.3.10'
-  s.add_development_dependency "codeclimate-test-reporter", '~> 0.4', '>= 0.4.7'
-  s.add_development_dependency 'byebug', '~> 4.0', '>= 4.0.3'
 end

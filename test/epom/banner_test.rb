@@ -15,18 +15,16 @@ class BannerTest < ActiveSupport::TestCase
   		:timestamp => timestamp, 
   		:username => ENV['username'],
       :weight => 1,
-      :allowNewPlacementsAutoLinking => false,
-      :flashBannerLink => '',
       :imageBannerLink => "http://beachgrooves.com/wp-content/uploads/2014/07/BeachGrooves-Logos-website2.png",
       :url => "http://www.example.com",
       :name => "banner #{timestamp}",
       :bannerType => Epom::BannerType::EXTERNAL_FILE,
       :adUnitId => 10,
-      :active => true,
+      :active => '1',
       :placementType => Epom::PlacementType::SITE_PLACEMENT,
       :adUnitWidth => 237,#128
       :adUnitHeight => 100,#114
-      # :imageFile => File.new('test/logo-128x128.png')
+      # :imageFile => File.new('test/IMG_5457-128x128.JPG')
     }
 
   	response = Epom::Banner.create_banner({}, body_params)
