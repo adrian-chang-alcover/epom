@@ -304,7 +304,7 @@ module Epom
         :get_chrome_browsers => {
             :url => '/rest-api/banner/BANNER_ID/targeting/browsers/chrome/values.do',
             :url_parameters => [:bannerId],
-            :body_parameters => [:bannerId, :hash, :timestamp, :username],
+            :body_parameters => [:hash, :timestamp, :username],
             :method => :get
         },
         :get_firefox_browsers => {
