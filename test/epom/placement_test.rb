@@ -39,9 +39,9 @@ class PlacementTest < ActiveSupport::TestCase
       :zoneId => ENV['zone_id'],
       :type => Epom::PlacementType::SITE_PLACEMENT,
       :name => "placement #{timestamp}",
-      :adUnit => Epom::AdUnitSize::CUSTOM_SITE_BANNER_SIZE,
-      :height => 200,
-      :width => 350,
+      :adUnitId => 10,
+      'size.height' => 200,
+      'size.width' => 350,
     }
     url_params = {}
 

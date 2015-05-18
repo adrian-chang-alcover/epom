@@ -6,6 +6,28 @@ class BannerTest < ActiveSupport::TestCase
     assert_kind_of Class, Epom::Banner
   end
 
+  define_get_tests_auto(Epom::Banner)
+
+  test "get_os_values" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :bannerId => ENV['banner_id']
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+    }
+
+    response = Epom::Banner.get_os_values(url_params, body_params)
+    assert_instance_of Array, response
+    if response.count > 0
+      first = response[0]
+      assert_instance_of String, first
+    end
+  end
+
+  #TODO: create banner with LOCAL_FILE
   test "create_banner" do
   	timestamp = Time.now.to_i * 1000
     body_params = {
@@ -14,18 +36,16 @@ class BannerTest < ActiveSupport::TestCase
   		:timestamp => timestamp, 
   		:username => ENV['username'],
       :weight => 1,
-      :allowNewPlacementsAutoLinking => false,
-      :flashBannerLink => '',
       :imageBannerLink => "http://beachgrooves.com/wp-content/uploads/2014/07/BeachGrooves-Logos-website2.png",
       :url => "http://www.example.com",
       :name => "banner #{timestamp}",
       :bannerType => Epom::BannerType::EXTERNAL_FILE,
       :adUnitId => 10,
-      :active => true,
+      :active => '1',
       :placementType => Epom::PlacementType::SITE_PLACEMENT,
       :adUnitWidth => 237,#128
       :adUnitHeight => 100,#114
-      # :imageFile => File.new('test/logo-128x128.png')
+      # :imageFile => File.new('test/IMG_5457-128x128.JPG')
     }
 
   	response = Epom::Banner.create_banner({}, body_params)
