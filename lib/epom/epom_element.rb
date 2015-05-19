@@ -1,46 +1,58 @@
 module Epom
   class EpomElement
 
-    def self.extended_parameters
+    include HTTMultiParty
+      base_uri 'https://n29.epom.com/'
+      default_params :output => 'json'
+      format :json
+      debug_output $stderr
+
+    def self.extended_methods
       { }
     end
 
-    def generic_validation(params, actual_params)
-      for key in params.keys
-        next if actual_params.keys.include?(key)
-        return false
-      end
-      true
+    def self.params_validation(params, params_signature)
+      return true if params_signature.nil? or params_signature.count.zero?
+      return true if params.keys.all? {|key| params_signature.include?(key)}
+      puts "invalid params: #{params.keys.select{|key| not params_signature.include?(key)}}"
+      return false
     end
 
-    def generic_method(method_name, params)
-      hash = extended_parameters[method_name]
-      url = hash[:url]
-      actual_params = hash[:parameters]
+    def self.generic_method(method_name, url_params, body_params)
+      signature = extended_methods[method_name]
+      url_params_signature = signature[:url_parameters]
+      body_params_signature = signature[:body_parameters]
+      url_signature = signature[:url]      
+      
+      url = replace_params_in_url(url_signature, url_params)
+      method = signature[:method]
 
-      url = replace_string_identifiers(url, params)
+      if signature[:headers]
+        headers signature[:headers]
+      else
+        default_options[:headers] = {}
+      end
 
-      valid = generic_validation(params, actual_params)
-      method = hash[:method]
-      if valid
-        response = send(method, url, :query => params) # revisar esto aqui
+      if params_validation(url_params, url_params_signature) and params_validation(body_params, body_params_signature)
+        http_proxy ENV['proxy_address'], ENV['proxy_port'], ENV['proxy_user'], ENV['proxy_password']
+        response = send(method, url, :query => body_params)
         if response.success?
-          return response # revisar bien esto aqui tambien
+          return response.parsed_response
         else
-          # ver aqui que se hace
+          response.code
         end
       else
-        raise ArgumentError, 'Error'
+        raise ArgumentError, 'Error in params_validation method'
       end
     end
 
-    def replace_string_identifiers(url, params)
+    def self.replace_params_in_url(url, url_params)
       url
     end
 
     def self.method_missing(name, *args)
-      if self.extended_parameters.keys.include?(name.to_sym)
-        generic_method(name, args)
+      if self.extended_methods.keys.include?(name.to_sym)
+        self.generic_method(name, *args)
       else
         super
       end
