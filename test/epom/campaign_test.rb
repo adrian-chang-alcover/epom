@@ -6,8 +6,6 @@ class CampaignTest < ActiveSupport::TestCase
     assert_kind_of Class, Epom::Campaign
   end
 
-  define_get_tests_auto(Epom::Campaign)
-
   test "get_actions" do
     timestamp = Time.now.to_i * 1000
     url_params = {
@@ -62,4 +60,23 @@ class CampaignTest < ActiveSupport::TestCase
     assert_instance_of Fixnum, response['id']
     assert_instance_of String, response['name']
   end  
+
+  test "get_targeting" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :campaignId => ENV['campaign_id'],
+      :targetId => '3929'
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+    }
+
+    response = Epom::Campaign.get_targeting(url_params, body_params)
+    assert_instance_of Hash, response
+    assert_instance_of Fixnum, response['id']
+  end  
+
+  define_get_tests_auto(Epom::Campaign)
 end
