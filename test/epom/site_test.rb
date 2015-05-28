@@ -6,8 +6,6 @@ class SiteTest < ActiveSupport::TestCase
     assert_kind_of Class, Epom::Site
   end
 
-  define_get_tests_auto(Epom::Site)
-
   test "get_sites" do
   	timestamp = Time.now.to_i * 1000
     body_params = {
@@ -133,4 +131,5 @@ class SiteTest < ActiveSupport::TestCase
     end
   end
 
+  define_get_tests_auto(Epom::Site)
 end

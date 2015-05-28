@@ -64,4 +64,6 @@ class ZoneTest < ActiveSupport::TestCase
     	assert_instance_of String, first['name']
     end
   end
+
+  define_get_tests_auto(Epom::Zone)
 end

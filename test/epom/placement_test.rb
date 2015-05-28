@@ -50,4 +50,6 @@ class PlacementTest < ActiveSupport::TestCase
     assert_instance_of Fixnum, response['id']
     assert response['success']
   end
+
+  define_get_tests_auto(Epom::Placement)
 end
