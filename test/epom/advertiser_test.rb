@@ -82,4 +82,6 @@ class AdvertiserTest < ActiveSupport::TestCase
     assert_instance_of Fixnum, response['id']
     response['id']
   end
+
+  define_get_tests_auto(Epom::Advertiser)
 end
