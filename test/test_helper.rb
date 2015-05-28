@@ -31,7 +31,7 @@ def define_get_tests_auto(klass)
 	klass.extended_methods.keys.grep(/^get_/).each do |extended_method|
     klass_name = klass.name.include?('::') ? klass.name.split('::').last : klass.name
     klass_test = "#{klass_name}Test".constantize
-    if klass_test.instance_methods.include?("test_#{extended_method}".to_sym)
+    unless klass_test.instance_methods.include?("test_#{extended_method}".to_sym)
       define_method("test_#{extended_method}_auto") do
         url_parameters_signature = klass.extended_methods[extended_method][:url_parameters]
         body_parameters_signature = klass.extended_methods[extended_method][:body_parameters]
