@@ -6,8 +6,6 @@ class BannerTest < ActiveSupport::TestCase
     assert_kind_of Class, Epom::Banner
   end
 
-  define_get_tests_auto(Epom::Banner)
-
   test "get_os_values" do
     timestamp = Time.now.to_i * 1000
     url_params = {
@@ -191,4 +189,6 @@ class BannerTest < ActiveSupport::TestCase
       assert_instance_of String, first['name']
     end
   end
+
+  define_get_tests_auto(Epom::Banner)
 end
