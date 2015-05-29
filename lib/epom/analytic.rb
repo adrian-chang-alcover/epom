@@ -5,11 +5,12 @@ module Epom
 
     def self.extended_methods
       {
-        :register_user => {
-          :url => 'rest-api/analytics/FORMAT/LOGIN/HASH/TIMESTAMP.do',
+        :analytics => {
+          :url => '/rest-api/analytics/FORMAT/LOGIN/HASH/TIMESTAMP.do',
           :url_parameters => [:format, :login, :hash, :timestamp],
           :body_parameters => [:customFrom, :customTo, :hourFrom, :hourTo, :groupRange, :displayIds, :statisticType, :range, :groupBy, :filterBy, :eqStr, :eqLong],
-          :method => :get
+          :method => :get,
+          :format => nil
         }
       }
     end

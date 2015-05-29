@@ -4,7 +4,6 @@ module Epom
     include HTTMultiParty
       base_uri 'https://n29.epom.com/'
       default_params :output => 'json'
-      format :json
       debug_output $stderr
 
     def self.extended_methods
@@ -32,6 +31,13 @@ module Epom
       else
         default_options[:headers] = {}
       end
+
+      if signature.has_key?(:format)
+        format signature[:format]
+      else
+        format :json
+      end
+
 
       if params_validation(url_params, url_params_signature) and params_validation(body_params, body_params_signature)
         http_proxy ENV['proxy_address'], ENV['proxy_port'], ENV['proxy_user'], ENV['proxy_password']
