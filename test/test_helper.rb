@@ -1,11 +1,10 @@
-require 'yaml'
-
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
+require 'yaml'
 env_file = File.join(Pathname.new(__FILE__).parent.parent, 'config', 'application.yml')
 YAML.load(File.open(env_file)).each do |key, value|
   ENV[key.to_s] = value.to_s
