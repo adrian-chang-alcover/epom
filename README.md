@@ -15,7 +15,7 @@ Put this line in your Gemfile:
 
 The bundle:
 
-`% bundle`
+`$ bundle`
 
 ## Usage
 

@@ -10,5 +10,5 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-gem "codeclimate-test-reporter", '~> 0.4', '>= 0.4.7'
+gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'byebug', '~> 4.0', '>= 4.0.3'
