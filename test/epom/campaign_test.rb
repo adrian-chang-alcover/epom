@@ -167,7 +167,45 @@ class CampaignTest < ActiveSupport::TestCase
   #   assert_equal body_params[:cookieValue], response['cookieValue']
   # end  
 
-  test "create_country_target" do
+  # test "create_country_target" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :campaignId => ENV['campaign_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :countryCode => ENV['country_code'],
+  #     :rule => 'INCLUDE'
+  #   }
+
+  #   response = Epom::Campaign.create_country_target(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   assert_instance_of Fixnum, response['id']
+  #   assert_equal 'COUNTRY', response['type']
+  # end  
+
+  # test "create_custom_parameter_target" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :campaignId => ENV['campaign_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :expression => "($p1==1 || $p1=='a') && ($p2>=12 && $p2<=22)",
+  #     :rule => 'INCLUDE'
+  #   }
+
+  #   response = Epom::Campaign.create_custom_parameter_target(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   assert_instance_of Fixnum, response['id']
+  #   assert_equal 'CUSTOM', response['type']
+  # end  
+
+  test "create_language_target" do
     timestamp = Time.now.to_i * 1000
     url_params = {
       :campaignId => ENV['campaign_id'],
@@ -176,14 +214,14 @@ class CampaignTest < ActiveSupport::TestCase
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
-      :countryCode => ENV['country_code'],
+      :languageCode => 'en',
       :rule => 'INCLUDE'
     }
 
-    response = Epom::Campaign.create_country_target(url_params, body_params)
+    response = Epom::Campaign.create_language_target(url_params, body_params)
     assert_instance_of Hash, response
     assert_instance_of Fixnum, response['id']
-    assert_equal 'COUNTRY', response['type']
+    assert_equal 'LANGUAGE', response['type']
   end  
 
   # test "get_actions" do
