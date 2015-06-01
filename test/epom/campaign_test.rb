@@ -97,7 +97,77 @@ class CampaignTest < ActiveSupport::TestCase
   #   assert_equal 2, click_capping['period']
   # end  
 
-  test "get_limits" do
+  # test "get_limits" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :campaignId => ENV['campaign_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #   }
+
+  #   response = Epom::Campaign.get_limits(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   response
+  # end  
+
+  # test "set_limits" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :campaignId => ENV['campaign_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :totalImpressionsLimit => 100, 
+  #     :dailyImpressionsLimit => 20,
+  #     :totalClicksLimit => 50,
+  #     :dailyClicksLimit => 10,
+  #     :totalBudgetLimit => 50,
+  #     :dailyBudgetLimit => 10, 
+  #     :startDate => DateTime.now.strftime('%Y-%m-%d-%H-%M'), 
+  #     :endDate => Date.tomorrow.strftime('%Y-%m-%d-%H-%M'),
+  #   }
+
+  #   response = Epom::Campaign.set_limits(url_params, body_params)
+
+  #   limit = test_get_limits()
+  #   assert_instance_of Hash, limit
+  #   assert_equal body_params[:totalImpressionsLimit], limit['totalImpressionsLimit']
+  #   assert_equal body_params[:dailyImpressionsLimit], limit['dailyImpressionsLimit']
+  #   assert_equal body_params[:totalClicksLimit], limit['totalClicksLimit']
+  #   assert_equal body_params[:dailyClicksLimit], limit['dailyClicksLimit']
+  #   assert_equal body_params[:totalBudgetLimit], limit['totalBudgetLimit']
+  #   assert_equal body_params[:dailyBudgetLimit], limit['dailyBudgetLimit']
+  #   assert_equal body_params[:startDate], limit['startDate']
+  #   assert_equal body_params[:endDate], limit['endDate']
+  # end  
+
+  # test "create_cookie_value_target" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :campaignId => ENV['campaign_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :cookieName => 'age',
+  #     :cookieValue => '20',
+  #     :rule => 'INCLUDE'
+  #   }
+
+  #   response = Epom::Campaign.create_cookie_value_target(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   assert_instance_of Fixnum, response['id']
+  #   assert_equal body_params[:cookieName], response['cookieName']
+  #   assert_equal body_params[:cookieValue], response['cookieValue']
+  # end  
+
+  test "create_country_target" do
     timestamp = Time.now.to_i * 1000
     url_params = {
       :campaignId => ENV['campaign_id'],
@@ -106,44 +176,14 @@ class CampaignTest < ActiveSupport::TestCase
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
+      :countryCode => ENV['country_code'],
+      :rule => 'INCLUDE'
     }
 
-    response = Epom::Campaign.get_limits(url_params, body_params)
+    response = Epom::Campaign.create_country_target(url_params, body_params)
     assert_instance_of Hash, response
-    response
-  end  
-
-  test "set_limits" do
-    timestamp = Time.now.to_i * 1000
-    url_params = {
-      :campaignId => ENV['campaign_id'],
-    }
-    body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
-      :totalImpressionsLimit => 100, 
-      :dailyImpressionsLimit => 20,
-      :totalClicksLimit => 50,
-      :dailyClicksLimit => 10,
-      :totalBudgetLimit => 50,
-      :dailyBudgetLimit => 10, 
-      :startDate => DateTime.now.strftime('%Y-%m-%d-%H-%M'), 
-      :endDate => Date.tomorrow.strftime('%Y-%m-%d-%H-%M'),
-    }
-
-    response = Epom::Campaign.set_limits(url_params, body_params)
-
-    limit = test_get_limits()
-    assert_instance_of Hash, limit
-    assert_equal body_params[:totalImpressionsLimit], limit['totalImpressionsLimit']
-    assert_equal body_params[:dailyImpressionsLimit], limit['dailyImpressionsLimit']
-    assert_equal body_params[:totalClicksLimit], limit['totalClicksLimit']
-    assert_equal body_params[:dailyClicksLimit], limit['dailyClicksLimit']
-    assert_equal body_params[:totalBudgetLimit], limit['totalBudgetLimit']
-    assert_equal body_params[:dailyBudgetLimit], limit['dailyBudgetLimit']
-    assert_equal body_params[:startDate], limit['startDate']
-    assert_equal body_params[:endDate], limit['endDate']
+    assert_instance_of Fixnum, response['id']
+    assert_equal 'COUNTRY', response['type']
   end  
 
   # test "get_actions" do
