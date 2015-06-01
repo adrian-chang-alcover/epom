@@ -444,6 +444,10 @@ module Epom
               :body_parameters => [:name, :clickToConversionTimeFrame, :clickToConversionTimeFramePeriodType, :viewToConversionTimeFrame, :viewToConversionTimeFramePeriodType, :hash, :timestamp, :username],
               :method => :post
           },
+
+          ###########################
+          # Campaign Pricing API
+          ###########################
           :disable_campaign_country_pricing => {
               :url => '/rest-api/campaigns/CAMPAIGN_ID/pricing/COUNTRY_CODE.do',
               :url_parameters => [:campaignId, :countryCode],
@@ -489,7 +493,7 @@ module Epom
           :update_campaign_pricing => {
               :url => '/rest-api/campaign/CAMPAIGN_ID/pricing.do',
               :url_parameters => [:campaignId],
-              :body_parameters => [:hash, :timestamp, :username],
+              :body_parameters => [:price, :hash, :timestamp, :username],
               :method => :post
           },
       }
