@@ -47,10 +47,60 @@ class CampaignTest < ActiveSupport::TestCase
   #   assert_equal "campaign #{timestamp}", campaign['name']
   # end  
 
-  test "get_click_capping" do
+  # test "get_click_capping" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :campaignId => ENV['campaign_id']
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #   }
+
+  #   response = Epom::Campaign.get_click_capping(url_params, body_params)
+  #   assert_instance_of Array, response
+  #   if response.count > 0
+  #     first = response[0]
+  #     assert_instance_of Hash, first
+  #     assert_instance_of Fixnum, first['id']
+  #     assert_instance_of Fixnum, first['amount']
+  #     assert_instance_of String, first['periodType']
+  #     assert_instance_of Fixnum, first['period']
+  #   end  
+  #   response
+  # end  
+
+  # test "set_click_capping" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :campaignId => ENV['campaign_id']
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :amount => [1,2,3,4,5,6,7].sample,
+  #     :evenDistribution => true,
+  #     :periodType => 'HOUR',
+  #     :period => 2
+  #   }
+
+  #   response = Epom::Campaign.set_click_capping(url_params, body_params)
+
+  #   click_cappings = test_get_click_capping()
+  #   click_capping = click_cappings.find { |cc| cc['amount'] == body_params[:amount] }
+  #   assert_instance_of Hash, click_capping
+  #   assert_instance_of Fixnum, click_capping['id']
+  #   assert_equal true, click_capping['evenDistribution']
+  #   assert_equal 'HOUR', click_capping['periodType']
+  #   assert_equal 2, click_capping['period']
+  # end  
+
+  test "get_limits" do
     timestamp = Time.now.to_i * 1000
     url_params = {
-      :campaignId => ENV['campaign_id']
+      :campaignId => ENV['campaign_id'],
     }
     body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
@@ -58,43 +108,42 @@ class CampaignTest < ActiveSupport::TestCase
       :username => ENV['username'],
     }
 
-    response = Epom::Campaign.get_click_capping(url_params, body_params)
-    assert_instance_of Array, response
-    if response.count > 0
-      first = response[0]
-      assert_instance_of Hash, first
-      assert_instance_of Fixnum, first['id']
-      assert_instance_of Fixnum, first['amount']
-      assert_instance_of String, first['periodType']
-      assert_instance_of Fixnum, first['period']
-    end  
+    response = Epom::Campaign.get_limits(url_params, body_params)
+    assert_instance_of Hash, response
     response
   end  
 
-  test "set_click_capping" do
+  test "set_limits" do
     timestamp = Time.now.to_i * 1000
     url_params = {
-      :campaignId => ENV['campaign_id']
+      :campaignId => ENV['campaign_id'],
     }
     body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
-      :amount => [1,2,3,4,5,6,7].sample,
-      :evenDistribution => true,
-      :periodType => 'HOUR',
-      :period => 2
+      :totalImpressionsLimit => 100, 
+      :dailyImpressionsLimit => 20,
+      :totalClicksLimit => 50,
+      :dailyClicksLimit => 10,
+      :totalBudgetLimit => 50,
+      :dailyBudgetLimit => 10, 
+      :startDate => DateTime.now.strftime('%Y-%m-%d-%H-%M'), 
+      :endDate => Date.tomorrow.strftime('%Y-%m-%d-%H-%M'),
     }
 
-    response = Epom::Campaign.set_click_capping(url_params, body_params)
+    response = Epom::Campaign.set_limits(url_params, body_params)
 
-    click_cappings = test_get_click_capping()
-    click_capping = click_cappings.find { |cc| cc['amount'] == body_params[:amount] }
-    assert_instance_of Hash, click_capping
-    assert_instance_of Fixnum, click_capping['id']
-    assert_equal true, click_capping['evenDistribution']
-    assert_equal 'HOUR', click_capping['periodType']
-    assert_equal 2, click_capping['period']
+    limit = test_get_limits()
+    assert_instance_of Hash, limit
+    assert_equal body_params[:totalImpressionsLimit], limit['totalImpressionsLimit']
+    assert_equal body_params[:dailyImpressionsLimit], limit['dailyImpressionsLimit']
+    assert_equal body_params[:totalClicksLimit], limit['totalClicksLimit']
+    assert_equal body_params[:dailyClicksLimit], limit['dailyClicksLimit']
+    assert_equal body_params[:totalBudgetLimit], limit['totalBudgetLimit']
+    assert_equal body_params[:dailyBudgetLimit], limit['dailyBudgetLimit']
+    assert_equal body_params[:startDate], limit['startDate']
+    assert_equal body_params[:endDate], limit['endDate']
   end  
 
   # test "get_actions" do
