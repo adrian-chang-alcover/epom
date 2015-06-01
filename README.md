@@ -15,7 +15,7 @@ Put this line in your Gemfile:
 
 The bundle:
 
-`% bundle`
+`$ bundle`
 
 ## Usage
 
@@ -71,3 +71,11 @@ body_params = '{"paymentModel":"FIXED_PRICE","pricingType":"CPM","price":4.2}'
 
 response = Epom::Site.set_site_pricing(url_params, body_params)
 ```
+
+## Contributing
+
+1. Fork it ( https://github.com/[my-github-username]/epom/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
