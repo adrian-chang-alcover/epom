@@ -205,7 +205,26 @@ class CampaignTest < ActiveSupport::TestCase
   #   assert_equal 'CUSTOM', response['type']
   # end  
 
-  test "create_language_target" do
+  # test "create_language_target" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :campaignId => ENV['campaign_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :languageCode => 'en',
+  #     :rule => 'INCLUDE'
+  #   }
+
+  #   response = Epom::Campaign.create_language_target(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   assert_instance_of Fixnum, response['id']
+  #   assert_equal 'LANGUAGE', response['type']
+  # end  
+
+  test "disable_targeting" do
     timestamp = Time.now.to_i * 1000
     url_params = {
       :campaignId => ENV['campaign_id'],
@@ -214,14 +233,25 @@ class CampaignTest < ActiveSupport::TestCase
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
-      :languageCode => 'en',
-      :rule => 'INCLUDE'
     }
 
-    response = Epom::Campaign.create_language_target(url_params, body_params)
-    assert_instance_of Hash, response
-    assert_instance_of Fixnum, response['id']
-    assert_equal 'LANGUAGE', response['type']
+    response = Epom::Campaign.disable_targeting(url_params, body_params)
+    assert_not_instance_of Fixnum, response
+  end  
+
+  test "enable_targeting" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :campaignId => ENV['campaign_id'],
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+    }
+
+    response = Epom::Campaign.enable_targeting(url_params, body_params)
+    assert_not_instance_of Fixnum, response
   end  
 
   # test "get_actions" do
