@@ -103,6 +103,27 @@ class AdvertiserTest < ActiveSupport::TestCase
     response['id']
   end
 
+  test "get_advertisers_tree" do
+    timestamp = Time.now.to_i * 1000
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username']
+    }
+    url_params = {
+    }
+
+    response = Epom::Advertiser.get_advertisers_tree(url_params, body_params)
+    assert_instance_of Array, response
+    if response.count > 0
+      first = response[0]
+      assert_instance_of Fixnum, first['id']
+      assert_instance_of Array, first['category']
+      assert_instance_of String, first['name']
+      assert_instance_of Array, first['campaigns']
+    end
+  end
+
   test "replace_params_in_url" do
     assert_equal "/rest-api/advertiser/#{ENV['advertiser_id']}/campaigns.do", Epom::Advertiser.replace_params_in_url('/rest-api/advertiser/ADVERTISER_ID/campaigns.do', {:advertiserId => ENV['advertiser_id']})
   end
