@@ -478,5 +478,27 @@ class BannerTest < ActiveSupport::TestCase
   #   assert_equal body_params[:price], pricing['price']
   # end  
 
+  test "get_linked_banners_for_placement" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :placementId => ENV['placement_id'],
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+    }
+
+    response = Epom::Banner.get_linked_banners_for_placement(url_params, body_params)
+    assert_instance_of Array, response
+    if response.count > 0
+      first = response[0]
+      assert_instance_of Hash, first
+      assert_instance_of Fixnum, first['campaignId']
+      assert_instance_of Fixnum, first['id']
+      assert_instance_of String, first['name']
+    end
+  end  
+
   # define_get_tests_auto(Epom::Banner)
 end

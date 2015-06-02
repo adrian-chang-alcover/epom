@@ -508,6 +508,12 @@ module Epom
             :url_parameters => [:bannerId],
             :body_parameters => [:price, :paymentModel, :hash, :timestamp, :username],
             :method => :post
+        },
+        :get_linked_banners_for_placement => {
+            :url => '/rest-api/banner/placement/PLACEMENT_ID/banners.do',
+            :url_parameters => [:placementId],
+            :body_parameters => [:hash, :timestamp, :username],
+            :method => :get
         }
 			}
 		end
@@ -518,6 +524,7 @@ module Epom
       url.gsub!('OS_NAME', url_params[:osName]) if url.include?('OS_NAME')
       url.gsub!('TARGET_ID', url_params[:targetId]) if url.include?('TARGET_ID')
       url.gsub!('COUNTRY_CODE', url_params[:countryCode]) if url.include?('COUNTRY_CODE')
+      url.gsub!('PLACEMENT_ID', url_params[:placementId]) if url.include?('PLACEMENT_ID')
       url
     end
 
