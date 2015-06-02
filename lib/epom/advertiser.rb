@@ -36,8 +36,8 @@ module Epom
       }
     end
 
-    def self.replace_params_in_url(url, urlp_arams)
-      url.gsub!('ADVERTISER_ID', urlp_arams[:advertiserId].to_s) if url.include?('ADVERTISER_ID')
+    def self.replace_params_in_url(url, url_params)
+      url.gsub!('ADVERTISER_ID', url_params[:advertiserId].to_s) if url.include?('ADVERTISER_ID')
       url
     end
 

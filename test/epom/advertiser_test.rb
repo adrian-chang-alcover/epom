@@ -83,5 +83,29 @@ class AdvertiserTest < ActiveSupport::TestCase
     response['id']
   end
 
+  test "update_advertiser" do
+    timestamp = Time.now.to_i * 1000
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :id => ENV['advertiser_id'],
+      :name => "advertiser #{DateTime.now}",
+      :contactName => "advertiser contactName",
+      :contactEmail => "advertiser@gmail.com",
+      :description => "advertiser description"
+    }
+
+    response = Epom::Advertiser.update_advertiser({}, body_params)
+    assert_instance_of Hash, response
+    assert response['success']
+    assert_instance_of Fixnum, response['id']
+    response['id']
+  end
+
+  test "replace_params_in_url" do
+    assert_equal "/rest-api/advertiser/#{ENV['advertiser_id']}/campaigns.do", Epom::Advertiser.replace_params_in_url('/rest-api/advertiser/ADVERTISER_ID/campaigns.do', {:advertiserId => ENV['advertiser_id']})
+  end
+
   define_get_tests_auto(Epom::Advertiser)
 end
