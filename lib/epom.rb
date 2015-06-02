@@ -1,6 +1,7 @@
 require 'httmultiparty'
 require 'digest'
 
+require 'epom/ad_unit'
 require 'epom/advertiser'
 require 'epom/auth'
 require 'epom/banner'
