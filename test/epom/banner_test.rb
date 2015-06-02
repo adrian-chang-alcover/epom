@@ -6,6 +6,34 @@ class BannerTest < ActiveSupport::TestCase
     assert_kind_of Class, Epom::Banner
   end
 
+  #TODO: create banner with LOCAL_FILE
+  test "create_banner" do
+    timestamp = Time.now.to_i * 1000
+    body_params = {
+      :campaignId => ENV['campaign_id'], 
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :weight => 1,
+      :imageBannerLink => "http://beachgrooves.com/wp-content/uploads/2014/07/BeachGrooves-Logos-website2.png",
+      :url => "http://www.example.com",
+      :name => "banner #{timestamp}",
+      :bannerType => Epom::BannerType::EXTERNAL_FILE,
+      :adUnitId => 10,
+      :active => '1',
+      :placementType => Epom::PlacementType::SITE_PLACEMENT,
+      :adUnitWidth => 237,#128
+      :adUnitHeight => 100,#114
+      # :imageFile => File.new('test/IMG_5457-128x128.JPG')
+    }
+
+    response = Epom::Banner.create_banner({}, body_params)
+    assert_instance_of Hash, response
+    assert_instance_of Fixnum, response['id']
+    assert_instance_of Fixnum, response['campaignId']
+    assert_equal ENV['campaign_id'].to_i, response['campaignId']
+  end
+
   test "get_os_values" do
     timestamp = Time.now.to_i * 1000
     url_params = {
@@ -23,34 +51,6 @@ class BannerTest < ActiveSupport::TestCase
       first = response[0]
       assert_instance_of String, first
     end
-  end
-
-  #TODO: create banner with LOCAL_FILE
-  test "create_banner" do
-  	timestamp = Time.now.to_i * 1000
-    body_params = {
-  		:campaignId => ENV['campaign_id'], 
-  		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-  		:timestamp => timestamp, 
-  		:username => ENV['username'],
-      :weight => 1,
-      :imageBannerLink => "http://beachgrooves.com/wp-content/uploads/2014/07/BeachGrooves-Logos-website2.png",
-      :url => "http://www.example.com",
-      :name => "banner #{timestamp}",
-      :bannerType => Epom::BannerType::EXTERNAL_FILE,
-      :adUnitId => 10,
-      :active => '1',
-      :placementType => Epom::PlacementType::SITE_PLACEMENT,
-      :adUnitWidth => 237,#128
-      :adUnitHeight => 100,#114
-      # :imageFile => File.new('test/IMG_5457-128x128.JPG')
-    }
-
-  	response = Epom::Banner.create_banner({}, body_params)
-    assert_instance_of Hash, response
-    assert_instance_of Fixnum, response['id']
-    assert_instance_of Fixnum, response['campaignId']
-    assert_equal ENV['campaign_id'].to_i, response['campaignId']
   end
 
   test "get_banner_ad_unit_values" do
@@ -189,6 +189,100 @@ class BannerTest < ActiveSupport::TestCase
       assert_instance_of String, first['name']
     end
   end
+
+ test "get_click_capping" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :bannerId => ENV['banner_id']
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+    }
+
+    response = Epom::Banner.get_click_capping(url_params, body_params)
+    assert_instance_of Array, response
+    if response.count > 0
+      first = response[0]
+      assert_instance_of Fixnum, first['amount']
+      assert_instance_of String, first['periodType']
+      assert_instance_of Fixnum, first['period']
+    end  
+    response
+  end
+
+  test "get_frequency_capping" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :bannerId => ENV['banner_id']
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+    }
+
+    response = Epom::Banner.get_frequency_capping(url_params, body_params)
+    assert_instance_of Array, response
+    if response.count > 0
+      first = response[0]
+      assert_instance_of Fixnum, first['amount']
+      assert_instance_of String, first['periodType']
+      assert_instance_of Fixnum, first['period']
+    end  
+    response
+  end
+
+  test "set_click_capping" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :bannerId => ENV['banner_id']
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :amount => [1,2,3,4,5,6,7].sample,
+      :evenDistribution => true,
+      :periodType => 'HOUR',
+      :period => 2
+    }
+
+    response = Epom::Banner.set_click_capping(url_params, body_params)
+
+    click_cappings = test_get_click_capping()
+    click_capping = click_cappings.find { |cc| cc['amount'] == body_params[:amount] }
+    assert_instance_of Hash, click_capping
+    assert_equal true, click_capping['evenDistribution']
+    assert_equal 'HOUR', click_capping['periodType']
+    assert_equal 2, click_capping['period']
+  end  
+
+  test "set_frequency_capping" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :bannerId => ENV['banner_id']
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :amount => [1,2,3,4,5,6,7].sample,
+      :evenDistribution => true,
+      :periodType => 'HOUR',
+      :period => 2
+    }
+
+    response = Epom::Banner.set_frequency_capping(url_params, body_params)
+
+    frequency_cappings = test_get_frequency_capping()
+    frequency_capping = frequency_cappings.find { |cc| cc['amount'] == body_params[:amount] }
+    assert_instance_of Hash, frequency_capping
+    assert_equal true, frequency_capping['evenDistribution']
+    assert_equal 'HOUR', frequency_capping['periodType']
+    assert_equal 2, frequency_capping['period']
+  end  
 
   define_get_tests_auto(Epom::Banner)
 end
