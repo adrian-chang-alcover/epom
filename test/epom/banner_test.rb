@@ -292,23 +292,56 @@ class BannerTest < ActiveSupport::TestCase
   # #Banner Limits API
   # #######################
 
-  test "get_limits" do
-    timestamp = Time.now.to_i * 1000
-    url_params = {
-      :bannerId => ENV['banner_id']
-    }
-    body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
-    }
+  # test "get_limits" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :bannerId => ENV['banner_id']
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #   }
 
-    response = Epom::Banner.get_limits(url_params, body_params)
-    assert_instance_of Hash, response
-    response
-  end
+  #   response = Epom::Banner.get_limits(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   response
+  # end
 
-  test "set_limits" do
+  # test "set_limits" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :bannerId => ENV['banner_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :totalImpressionsLimit => 100, 
+  #     :dailyImpressionsLimit => 20,
+  #     :totalClicksLimit => 50,
+  #     :dailyClicksLimit => 10,
+  #     :totalBudgetLimit => 50,
+  #     :dailyBudgetLimit => 10, 
+  #     :startDate => DateTime.now.strftime('%Y-%m-%d-%H-%M'), 
+  #     :endDate => Date.tomorrow.strftime('%Y-%m-%d-%H-%M'),
+  #   }
+
+  #   response = Epom::Banner.set_limits(url_params, body_params)
+
+  #   limit = test_get_limits()
+  #   assert_instance_of Hash, limit
+  #   assert_equal body_params[:totalImpressionsLimit], limit['totalImpressionsLimit']
+  #   assert_equal body_params[:dailyImpressionsLimit], limit['dailyImpressionsLimit']
+  #   assert_equal body_params[:totalClicksLimit], limit['totalClicksLimit']
+  #   assert_equal body_params[:dailyClicksLimit], limit['dailyClicksLimit']
+  #   assert_equal body_params[:totalBudgetLimit], limit['totalBudgetLimit']
+  #   assert_equal body_params[:dailyBudgetLimit], limit['dailyBudgetLimit']
+  #   assert_equal body_params[:startDate], limit['startDate']
+  #   assert_equal body_params[:endDate], limit['endDate']
+  # end  
+
+  test "create_cookie_value_target" do
     timestamp = Time.now.to_i * 1000
     url_params = {
       :bannerId => ENV['banner_id'],
@@ -317,28 +350,103 @@ class BannerTest < ActiveSupport::TestCase
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
-      :totalImpressionsLimit => 100, 
-      :dailyImpressionsLimit => 20,
-      :totalClicksLimit => 50,
-      :dailyClicksLimit => 10,
-      :totalBudgetLimit => 50,
-      :dailyBudgetLimit => 10, 
-      :startDate => DateTime.now.strftime('%Y-%m-%d-%H-%M'), 
-      :endDate => Date.tomorrow.strftime('%Y-%m-%d-%H-%M'),
+      :cookieName => 'age',
+      :cookieValue => '20',
+      :rule => 'INCLUDE'
     }
 
-    response = Epom::Banner.set_limits(url_params, body_params)
+    response = Epom::Banner.create_cookie_value_target(url_params, body_params)
+    assert_instance_of Hash, response
+    assert_instance_of Fixnum, response['id']
+    assert_equal body_params[:cookieName], response['cookieName']
+    assert_equal body_params[:cookieValue], response['cookieValue']
+  end  
 
-    limit = test_get_limits()
-    assert_instance_of Hash, limit
-    assert_equal body_params[:totalImpressionsLimit], limit['totalImpressionsLimit']
-    assert_equal body_params[:dailyImpressionsLimit], limit['dailyImpressionsLimit']
-    assert_equal body_params[:totalClicksLimit], limit['totalClicksLimit']
-    assert_equal body_params[:dailyClicksLimit], limit['dailyClicksLimit']
-    assert_equal body_params[:totalBudgetLimit], limit['totalBudgetLimit']
-    assert_equal body_params[:dailyBudgetLimit], limit['dailyBudgetLimit']
-    assert_equal body_params[:startDate], limit['startDate']
-    assert_equal body_params[:endDate], limit['endDate']
+  test "create_country_target" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :bannerId => ENV['banner_id'],
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :countryCode => ENV['country_code'],
+      :rule => 'INCLUDE'
+    }
+
+    response = Epom::Banner.create_country_target(url_params, body_params)
+    assert_instance_of Hash, response
+    assert_instance_of Fixnum, response['id']
+    assert_equal 'COUNTRY', response['type']
+  end  
+
+  test "create_custom_parameter_target" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :bannerId => ENV['banner_id'],
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :expression => "($p1==1 || $p1=='a') && ($p2>=12 && $p2<=22)",
+      :rule => 'INCLUDE'
+    }
+
+    response = Epom::Banner.create_custom_parameter_target(url_params, body_params)
+    assert_instance_of Hash, response
+    assert_instance_of Fixnum, response['id']
+    assert_equal 'CUSTOM', response['type']
+  end  
+
+  test "create_language_target" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :bannerId => ENV['banner_id'],
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :languageCode => 'en',
+      :rule => 'INCLUDE'
+    }
+
+    response = Epom::Banner.create_language_target(url_params, body_params)
+    assert_instance_of Hash, response
+    assert_instance_of Fixnum, response['id']
+    assert_equal 'LANGUAGE', response['type']
+  end  
+
+  test "disable_targeting" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :bannerId => ENV['banner_id'],
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+    }
+
+    response = Epom::Banner.disable_targeting(url_params, body_params)
+    assert_not_instance_of Fixnum, response
+  end  
+
+  test "enable_targeting" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :bannerId => ENV['banner_id'],
+    }
+    body_params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+    }
+
+    response = Epom::Banner.enable_targeting(url_params, body_params)
+    assert_not_instance_of Fixnum, response
   end  
 
  #  define_get_tests_auto(Epom::Banner)
