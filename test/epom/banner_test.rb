@@ -73,22 +73,23 @@ class BannerTest < ActiveSupport::TestCase
  #    end
  #  end  
 
- #  test "get_banner_pricing" do
- #    timestamp = Time.now.to_i * 1000
- #    body_params = {
- #      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
- #      :timestamp => timestamp, 
- #      :username => ENV['username'],
- #    }
- #    url_params = {
- #      :bannerId => ENV['banner_id']
- #    }
+  # test "get_banner_pricing" do
+  #   timestamp = Time.now.to_i * 1000
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #   }
+  #   url_params = {
+  #     :bannerId => ENV['banner_id']
+  #   }
 
- #    response = Epom::Banner.get_banner_pricing(url_params, body_params)
- #    assert_instance_of Hash, response
- #    assert_instance_of Fixnum, response['id']
- #    assert_instance_of String, response['paymentModel']
- #  end
+  #   response = Epom::Banner.get_banner_pricing(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   assert_instance_of Fixnum, response['id']
+  #   assert_instance_of String, response['paymentModel']
+  #   response
+  # end
 
  #  test "get_placements_for_banner" do
  #    timestamp = Time.now.to_i * 1000
@@ -133,24 +134,6 @@ class BannerTest < ActiveSupport::TestCase
  #    end
  #  end
 
- #  test "get_advertising_categories" do
- #    timestamp = Time.now.to_i * 1000
- #    body_params = {
- #      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
- #      :timestamp => timestamp, 
- #      :username => ENV['username'],
- #    }
-
- #    response = Epom::Banner.get_advertising_categories({}, body_params)
- #    assert_instance_of Array, response
- #    if response.count > 0
- #      first = response[0]
- #      assert_instance_of Hash, first
- #      assert_instance_of Fixnum, first['id']
- #      assert_instance_of String, first['name']
- #    end
- #  end
-
  #  test "get_banner" do
  #    timestamp = Time.now.to_i * 1000
  #    body_params = {
@@ -170,24 +153,6 @@ class BannerTest < ActiveSupport::TestCase
  #    assert_instance_of String, response['bannerType']
  #    assert_instance_of Fixnum, response['adUnitId']
  #    assert_instance_of String, response['placementType']
- #  end
-
- #  test "get_publishing_categories" do
- #    timestamp = Time.now.to_i * 1000
- #    body_params = {
- #      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
- #      :timestamp => timestamp, 
- #      :username => ENV['username'],
- #    }
-
- #    response = Epom::Banner.get_publishing_categories({}, body_params)
- #    assert_instance_of Array, response
- #    if response.count > 0
- #      first = response[0]
- #      assert_instance_of Hash, first
- #      assert_instance_of Fixnum, first['id']
- #      assert_instance_of String, first['name']
- #    end
  #  end
 
  #  #######################
@@ -341,113 +306,177 @@ class BannerTest < ActiveSupport::TestCase
   #   assert_equal body_params[:endDate], limit['endDate']
   # end  
 
-  test "create_cookie_value_target" do
-    timestamp = Time.now.to_i * 1000
-    url_params = {
-      :bannerId => ENV['banner_id'],
-    }
-    body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
-      :cookieName => 'age',
-      :cookieValue => '20',
-      :rule => 'INCLUDE'
-    }
+  # test "create_cookie_value_target" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :bannerId => ENV['banner_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :cookieName => 'age',
+  #     :cookieValue => '20',
+  #     :rule => 'INCLUDE'
+  #   }
 
-    response = Epom::Banner.create_cookie_value_target(url_params, body_params)
-    assert_instance_of Hash, response
-    assert_instance_of Fixnum, response['id']
-    assert_equal body_params[:cookieName], response['cookieName']
-    assert_equal body_params[:cookieValue], response['cookieValue']
-  end  
+  #   response = Epom::Banner.create_cookie_value_target(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   assert_instance_of Fixnum, response['id']
+  #   assert_equal body_params[:cookieName], response['cookieName']
+  #   assert_equal body_params[:cookieValue], response['cookieValue']
+  # end  
 
-  test "create_country_target" do
-    timestamp = Time.now.to_i * 1000
-    url_params = {
-      :bannerId => ENV['banner_id'],
-    }
-    body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
-      :countryCode => ENV['country_code'],
-      :rule => 'INCLUDE'
-    }
+  # test "create_country_target" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :bannerId => ENV['banner_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :countryCode => ENV['country_code'],
+  #     :rule => 'INCLUDE'
+  #   }
 
-    response = Epom::Banner.create_country_target(url_params, body_params)
-    assert_instance_of Hash, response
-    assert_instance_of Fixnum, response['id']
-    assert_equal 'COUNTRY', response['type']
-  end  
+  #   response = Epom::Banner.create_country_target(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   assert_instance_of Fixnum, response['id']
+  #   assert_equal 'COUNTRY', response['type']
+  # end  
 
-  test "create_custom_parameter_target" do
-    timestamp = Time.now.to_i * 1000
-    url_params = {
-      :bannerId => ENV['banner_id'],
-    }
-    body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
-      :expression => "($p1==1 || $p1=='a') && ($p2>=12 && $p2<=22)",
-      :rule => 'INCLUDE'
-    }
+  # test "create_custom_parameter_target" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :bannerId => ENV['banner_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :expression => "($p1==1 || $p1=='a') && ($p2>=12 && $p2<=22)",
+  #     :rule => 'INCLUDE'
+  #   }
 
-    response = Epom::Banner.create_custom_parameter_target(url_params, body_params)
-    assert_instance_of Hash, response
-    assert_instance_of Fixnum, response['id']
-    assert_equal 'CUSTOM', response['type']
-  end  
+  #   response = Epom::Banner.create_custom_parameter_target(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   assert_instance_of Fixnum, response['id']
+  #   assert_equal 'CUSTOM', response['type']
+  # end  
 
-  test "create_language_target" do
-    timestamp = Time.now.to_i * 1000
-    url_params = {
-      :bannerId => ENV['banner_id'],
-    }
-    body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
-      :languageCode => 'en',
-      :rule => 'INCLUDE'
-    }
+  # test "create_language_target" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :bannerId => ENV['banner_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :languageCode => 'en',
+  #     :rule => 'INCLUDE'
+  #   }
 
-    response = Epom::Banner.create_language_target(url_params, body_params)
-    assert_instance_of Hash, response
-    assert_instance_of Fixnum, response['id']
-    assert_equal 'LANGUAGE', response['type']
-  end  
+  #   response = Epom::Banner.create_language_target(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   assert_instance_of Fixnum, response['id']
+  #   assert_equal 'LANGUAGE', response['type']
+  # end  
 
-  test "disable_targeting" do
-    timestamp = Time.now.to_i * 1000
-    url_params = {
-      :bannerId => ENV['banner_id'],
-    }
-    body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
-    }
+  # test "disable_targeting" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :bannerId => ENV['banner_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #   }
 
-    response = Epom::Banner.disable_targeting(url_params, body_params)
-    assert_not_instance_of Fixnum, response
-  end  
+  #   response = Epom::Banner.disable_targeting(url_params, body_params)
+  #   assert_not_instance_of Fixnum, response
+  # end  
 
-  test "enable_targeting" do
-    timestamp = Time.now.to_i * 1000
-    url_params = {
-      :bannerId => ENV['banner_id'],
-    }
-    body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
-    }
+  # test "enable_targeting" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :bannerId => ENV['banner_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #   }
 
-    response = Epom::Banner.enable_targeting(url_params, body_params)
-    assert_not_instance_of Fixnum, response
-  end  
+  #   response = Epom::Banner.enable_targeting(url_params, body_params)
+  #   assert_not_instance_of Fixnum, response
+  # end  
 
- #  define_get_tests_auto(Epom::Banner)
+  ##############################
+  ##Banner Placement Linking API
+  ##############################
+
+  # test "get_banner_placements_list" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :bannerId => ENV['banner_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #   }
+
+  #   response = Epom::Banner.get_banner_placements_list(url_params, body_params)
+  #   assert_instance_of Array, response
+  #   if response.count > 0
+  #     first = response[0]
+  #     assert_instance_of Fixnum, first['id']
+  #     assert_instance_of String, first['name']
+  #   end
+  #   response
+  # end  
+
+  # test "create_or_update_banner_placements" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :bannerId => ENV['banner_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :ids => ENV['placement_id']
+  #   }
+
+  #   response = Epom::Banner.create_or_update_banner_placements(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   assert response['success']
+  # end  
+
+  # test "update_banner_pricing" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :bannerId => ENV['banner_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :price => [2.1, 1.2, 3.4].sample,
+  #     # :paymentModel => 'CPM'
+  #   }
+
+  #   response = Epom::Banner.update_banner_pricing(url_params, body_params)
+  #   assert_not_instance_of Fixnum, response
+
+  #   pricing = test_get_banner_pricing()
+  #   assert_instance_of Hash, pricing
+  #   assert_instance_of Float, pricing['price']
+  #   assert_equal body_params[:price], pricing['price']
+  # end  
+
+  # define_get_tests_auto(Epom::Banner)
 end
