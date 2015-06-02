@@ -32,7 +32,11 @@ module Epom
               :body_parameters => [:name, :contactName, :contactEmail, :description, :categoryId, :hash, :timestamp, :username],
               :method => :put
           },
-
+          :get_advertisers_tree => {
+              :url => '/rest-api/advertisers-tree.do',
+              :body_parameters => [:hash, :timestamp, :username],
+              :method => :get
+          },
       }
     end
 
