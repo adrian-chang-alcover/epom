@@ -103,5 +103,9 @@ class AdvertiserTest < ActiveSupport::TestCase
     response['id']
   end
 
+  test "replace_params_in_url" do
+    assert_equal "/rest-api/advertiser/#{ENV['advertiser_id']}/campaigns.do", Epom::Advertiser.replace_params_in_url('/rest-api/advertiser/ADVERTISER_ID/campaigns.do', {:advertiserId => ENV['advertiser_id']})
+  end
+
   define_get_tests_auto(Epom::Advertiser)
 end
