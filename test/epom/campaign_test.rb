@@ -343,8 +343,14 @@ class CampaignTest < ActiveSupport::TestCase
       :username => ENV['username'],
     }
       
-    # PENDING
-    # response = Epom::Campaign.adjusted_cpm_list(url_params, body_params)
+    response = Epom::Campaign.adjusted_cpm_list(url_params, body_params)
+    assert_instance_of Array, response
+    if response.count > 0
+      first = response[0]
+      assert_instance_of Fixnum, first['id']
+      assert_instance_of Float, first['value']
+      assert_instance_of String, first['country']
+    end
   end
 
   ##########################
