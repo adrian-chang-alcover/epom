@@ -2,6 +2,8 @@ require 'test_helper'
 require 'epom/advertiser'
 
 class AdvertiserTest < ActiveSupport::TestCase
+  Epom::EpomElement.login(ENV['username'], ENV['password'])
+
 	test "truth" do
     assert_kind_of Class, Epom::Advertiser
   end
@@ -12,7 +14,6 @@ class AdvertiserTest < ActiveSupport::TestCase
     timestamp = Time.now.to_i * 1000
     body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
       :username => ENV['username']
     }
     url_params = {
@@ -29,7 +30,6 @@ class AdvertiserTest < ActiveSupport::TestCase
     body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
-      :username => ENV['username']
     }
 
   	response = Epom::Advertiser.get_advertiser_permissions_for_user({}, body_params)
@@ -46,7 +46,6 @@ class AdvertiserTest < ActiveSupport::TestCase
   test "get_campaigns_for_advertiser" do
   	timestamp = Time.now.to_i * 1000
     body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username']
     }
@@ -67,9 +66,6 @@ class AdvertiserTest < ActiveSupport::TestCase
   test "create advertiser" do
     timestamp = Time.now.to_i * 1000
     body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
       :name => "advertiser #{DateTime.now}",
       :contactName => "advertiser contactName",
       :contactEmail => "advertiser@gmail.com",
