@@ -6,6 +6,11 @@ module Epom
       default_params :output => 'json'
       debug_output $stderr
 
+    def self.login(username, password)
+      @@username = username
+      @@password = password
+    end
+
     def self.extended_methods
       { }
     end
@@ -38,6 +43,16 @@ module Epom
         format :json
       end
 
+      timestamp = Time.now.to_i * 1000
+      if body_params_signature.include?(:hash) and not body_params[:hash]
+        body_params[:hash] = Epom.create_hash(Epom.create_hash(@@password), timestamp)
+      end
+      if body_params_signature.include?(:timestamp) and not body_params[:timestamp]
+        body_params[:timestamp] = timestamp
+      end
+      if body_params_signature.include?(:username) and not body_params[:username]
+        body_params[:username] = @@username
+      end
 
       if params_validation(url_params, url_params_signature) and params_validation(body_params, body_params_signature)
         http_proxy ENV['proxy_address'], ENV['proxy_port'], ENV['proxy_user'], ENV['proxy_password']
