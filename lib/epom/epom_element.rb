@@ -12,7 +12,7 @@ module Epom
 
     def self.params_validation(params, params_signature)
       return true if params_signature.nil? or params_signature.count.zero?
-      return true if params.keys.all? {|key| params_signature.include?(key)}
+      return true if params.keys.all? {|key| params_signature.include?(key.to_sym)}
       puts "invalid params: #{params.keys.select{|key| not params_signature.include?(key)}}"
       return false
     end
