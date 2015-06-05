@@ -26,7 +26,10 @@ module Epom
       signature = extended_methods[method_name]
       url_params_signature = signature[:url_parameters]
       body_params_signature = signature[:body_parameters]
-      url_signature = signature[:url]      
+      url_signature = signature[:url]   
+
+      url_params.symbolize_keys!
+      body_params.symbolize_keys!   
       
       url = replace_params_in_url(url_signature, url_params)
       method = signature[:method]
