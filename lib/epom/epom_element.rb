@@ -28,8 +28,8 @@ module Epom
       body_params_signature = signature[:body_parameters]
       url_signature = signature[:url]   
 
-      url_params.symbolize_keys!
-      body_params.symbolize_keys!   
+      url_params.symbolize_keys! if url_params.is_a? Hash
+      body_params.symbolize_keys! if body_params.is_a? Hash   
       
       url = replace_params_in_url(url_signature, url_params)
       method = signature[:method]
