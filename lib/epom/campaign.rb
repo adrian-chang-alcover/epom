@@ -500,9 +500,9 @@ module Epom
     end
 
     def self.replace_params_in_url(url, url_params)
-      url.gsub!('CAMPAIGN_ID', url_params[:campaignId]) if url.include?('CAMPAIGN_ID')
+      url.gsub!('CAMPAIGN_ID', url_params[:campaignId].to_s) if url.include?('CAMPAIGN_ID')
       url.gsub!('OS_NAME', url_params[:osName]) if url.include?('OS_NAME')
-      url.gsub!('TARGET_ID', url_params[:targetId]) if url.include?('TARGET_ID')
+      url.gsub!('TARGET_ID', url_params[:targetId].to_s) if url.include?('TARGET_ID')
       url.gsub!('ACTION_KEY', url_params[:actionKey]) if url.include?('ACTION_KEY')
       url.gsub!('COUNTRY_CODE', url_params[:countryCode]) if url.include?('COUNTRY_CODE')
       url
