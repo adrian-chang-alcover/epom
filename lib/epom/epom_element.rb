@@ -83,8 +83,6 @@ module Epom
     end
 
     def self.respond_to?(method_name)
-      byebug
-      print '*****************************'
       return true if extended_methods.keys.include?(method_name.to_sym)
       super
     end
