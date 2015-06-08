@@ -4,7 +4,7 @@
 [![Code Climate](https://codeclimate.com/repos/54eb90386956804fe6003401/badges/7a524fd655323e4dcd8f/gpa.svg)](https://codeclimate.com/repos/54eb90386956804fe6003401/feed)
 [![Test Coverage](https://codeclimate.com/repos/54eb90386956804fe6003401/badges/7a524fd655323e4dcd8f/coverage.svg)](https://codeclimate.com/repos/54eb90386956804fe6003401/coverage)
 
-The Epom gem is a wrapper for Epom API in ruby.
+The Epom gem is a wrapper for Epom API in Ruby.
 
 
 ## Install
