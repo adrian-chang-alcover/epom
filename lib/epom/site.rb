@@ -33,6 +33,11 @@ module Epom
               :body_parameters => [:publishingCategories, :hash, :timestamp, :username],
               :method => :get
           },
+          :get_sites_tree => {
+              :url => '/rest-api/sites-tree.do',
+              :body_parameters => [:publishingCategories, :hash, :timestamp, :username],
+              :method => :get
+            },
           :get_sites_zones => {
               :url => '/rest-api/sites/SITE_ID/zones.do',
               :url_parameters => [:siteId],

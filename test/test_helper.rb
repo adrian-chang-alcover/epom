@@ -56,3 +56,5 @@ def define_get_tests_auto(klass)
     end
 	end
 end
+
+Epom::EpomElement.login(ENV['username'], ENV['password'])

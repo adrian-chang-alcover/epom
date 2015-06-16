@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    epom (0.7.1)
+    epom (0.8.5)
       httmultiparty (~> 0.3, >= 0.3.6)
       rails (~> 4.2, >= 4.2.0)
       rake (~> 10.4, >= 10.4.2)
