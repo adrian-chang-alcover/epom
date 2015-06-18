@@ -500,5 +500,16 @@ class BannerTest < ActiveSupport::TestCase
     end
   end  
 
+  test "get_device_values" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :bannerId => ENV['banner_id'],
+    }
+    body_params = {}
+
+    response = Epom::Banner.get_device_values(url_params, body_params)
+    # assert_not_instance_of Fixnum, response
+  end  
+
   define_get_tests_auto(Epom::Banner)
 end

@@ -430,5 +430,16 @@ class CampaignTest < ActiveSupport::TestCase
     assert_equal 2.9, body_params[:price]
   end  
 
+  test "get_device_values" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :campaignId => ENV['campaign_id'],
+    }
+    body_params = {}
+
+    response = Epom::Campaign.get_device_values(url_params, body_params)
+    # assert_not_instance_of Fixnum, response
+  end  
+
   define_get_tests_auto(Epom::Campaign)
 end
