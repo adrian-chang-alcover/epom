@@ -2,7 +2,7 @@ module Epom
   class EpomElement
 
     include HTTMultiParty
-      base_uri 'https://n29.epom.com/'
+      base_uri ENV['epom_server']
       default_params :output => 'json'
       debug_output $stderr
 

@@ -430,6 +430,5 @@ class CampaignTest < ActiveSupport::TestCase
     assert_equal 2.9, body_params[:price]
   end  
 
-  set_environment_variables
   define_get_tests_auto(Epom::Campaign)
 end

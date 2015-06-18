@@ -65,6 +65,5 @@ class ZoneTest < ActiveSupport::TestCase
     end
   end
 
-  set_environment_variables
   define_get_tests_auto(Epom::Zone)
 end
