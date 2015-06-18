@@ -41,6 +41,7 @@ class SiteTest < ActiveSupport::TestCase
     if response.count > 0
       first = response.first
       assert_instance_of Hash, first
+      byebug
       assert_instance_of Float, first['cpmThreshold']
     end
   end
@@ -173,5 +174,6 @@ class SiteTest < ActiveSupport::TestCase
   #   assert_not_instance_of Fixnum, response
   # end
 
+  set_environment_variables
   define_get_tests_auto(Epom::Site)
 end

@@ -89,8 +89,8 @@ end
 def create_campaign
   body_params = {
     :advertiserId => ENV['advertiser_id'], 
-    :name => "campaign #{timestamp}",
-    :description => "description for campaign #{timestamp}",
+    :name => "campaign #{DateTime.now}",
+    :description => "description for campaign #{DateTime.now}",
     :active => true
   }
   response = Epom::Campaign.create_campaign({}, body_params)
@@ -103,7 +103,7 @@ def create_banner
     :weight => 1,
     :imageBannerLink => "http://beachgrooves.com/wp-content/uploads/2014/07/BeachGrooves-Logos-website2.png",
     :url => "http://www.example.com",
-    :name => "banner #{timestamp}",
+    :name => "banner #{DateTime.now}",
     :bannerType => Epom::BannerType::EXTERNAL_FILE,
     :adUnitId => 10,
     :active => '1',
@@ -117,7 +117,7 @@ end
 
 def create_site
   body_params = {
-    :name => "publisher_#{timestamp}",
+    :name => "publisher_#{DateTime.now}",
     :url => 'http://www.publisher.com',
     :email => "publisher@example.com",
     :categoryId => 2
@@ -128,7 +128,7 @@ end
 
 def create_zone
   body_params = {
-    :name => "zone #{timestamp}",
+    :name => "zone #{DateTime.now}",
     :description => "description",
     :siteId => ENV['site_id']
   }
@@ -137,11 +137,10 @@ def create_zone
 end
 
 def create_standard_placement
-  timestamp = Time.now.to_i * 1000
   body_params = {
     :zoneId => ENV['zone_id'],
     :type => Epom::PlacementType::SITE_PLACEMENT,
-    :name => "placement #{timestamp}",
+    :name => "placement #{DateTime.now}",
     :adUnitId => 10,
     'size.height' => 200,
     'size.width' => 350,

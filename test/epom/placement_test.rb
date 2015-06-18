@@ -51,5 +51,6 @@ class PlacementTest < ActiveSupport::TestCase
     assert response['success']
   end
 
+  set_environment_variables
   define_get_tests_auto(Epom::Placement)
 end
