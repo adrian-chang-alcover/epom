@@ -56,3 +56,11 @@ def define_get_tests_auto(klass)
     end
 	end
 end
+
+Epom.configure do |config|
+  config.public_key = ENV['public_key']
+  config.private_key = ENV['private_key']
+  config.epom_server = ENV['epom_server']
+end
+
+Epom::EpomElement.login(ENV['username'], ENV['password'])

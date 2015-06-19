@@ -397,13 +397,13 @@ module Epom
               :method => :put
           },
           :adjusted_cpm_country_trigger => {
-              :url => '/rest-api/campaign/CAMPAIGN_ID/adjustedCpm/value.do',
+              :url => '/rest-api/campaign/CAMPAIGN_ID/adjustedCpm.do',
               :url_parameters => [:campaignId],
               :body_parameters => [:enable, :hash, :timestamp, :username],
               :method => :post
           },
           :adjusted_cpm_list => {
-              :url => '/rest-api/campaign/CAMPAIGN_ID/adjustedCpm/value.do',
+              :url => '/rest-api/campaign/CAMPAIGN_ID/adjustedCpm/values.do',
               :url_parameters => [:campaignId],
               :body_parameters => [:hash, :timestamp, :username],
               :method => :get

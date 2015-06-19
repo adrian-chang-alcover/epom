@@ -13,6 +13,8 @@ require 'epom/publisher'
 require 'epom/site'
 require 'epom/zone'
 
+require 'epom/config'
+
 module Epom
 
   def self.create_hash(*args)

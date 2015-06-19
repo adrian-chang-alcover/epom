@@ -343,8 +343,14 @@ class CampaignTest < ActiveSupport::TestCase
       :username => ENV['username'],
     }
       
-    # PENDING
-    # response = Epom::Campaign.adjusted_cpm_list(url_params, body_params)
+    response = Epom::Campaign.adjusted_cpm_list(url_params, body_params)
+    assert_instance_of Array, response
+    if response.count > 0
+      first = response[0]
+      assert_instance_of Fixnum, first['id']
+      assert_instance_of Float, first['value']
+      assert_instance_of String, first['country']
+    end
   end
 
   ##########################
@@ -422,6 +428,17 @@ class CampaignTest < ActiveSupport::TestCase
 
     pricing = test_get_campaign_pricing()
     assert_equal 2.9, body_params[:price]
+  end  
+
+  test "get_device_values" do
+    timestamp = Time.now.to_i * 1000
+    url_params = {
+      :campaignId => ENV['campaign_id'],
+    }
+    body_params = {}
+
+    response = Epom::Campaign.get_device_values(url_params, body_params)
+    # assert_not_instance_of Fixnum, response
   end  
 
   define_get_tests_auto(Epom::Campaign)
