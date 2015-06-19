@@ -2,7 +2,6 @@ module Epom
   class EpomElement
 
     include HTTMultiParty
-      base_uri ENV['epom_server']
       default_params :output => 'json'
       debug_output $stderr
 
@@ -59,6 +58,7 @@ module Epom
 
       if params_validation(url_params, url_params_signature) and params_validation(body_params, body_params_signature)
         http_proxy ENV['proxy_address'], ENV['proxy_port'], ENV['proxy_user'], ENV['proxy_password']
+        base_uri Epom.config.epom_server
         response = send(method, url, :query => body_params)
         if response.success?
           return response.parsed_response
