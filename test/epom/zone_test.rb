@@ -45,7 +45,7 @@ class ZoneTest < ActiveSupport::TestCase
     assert response['success']
   end
 
-  test "get_zone_placement" do
+  test "get_zone_placements" do
     timestamp = Time.now.to_i * 1000
     body_params = {
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
@@ -56,7 +56,7 @@ class ZoneTest < ActiveSupport::TestCase
     	:zoneId => ENV['zone_id']
     }
 
-    response = Epom::Zone.get_zone_placement(url_params, body_params)
+    response = Epom::Zone.get_zone_placements(url_params, body_params)
     assert_instance_of Array, response
     if response.count > 0
     	first = response[0]
