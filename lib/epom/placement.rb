@@ -35,21 +35,29 @@ module Epom
           },
           :update_standard_placement => {
               :url => '/rest-api/placements/update/standard.do',
-              :body_parameters => [:id, :zoneId, :type, :name, :description, :adUnit, :height, :width, :allowVariableBannerSizes, :defaultCode, :rotateInterval, :hash, :timestamp, :username],
+              :body_parameters => [:id, :zoneId, :type, :name, :description, :adUnitId, :size, 'size.height'.to_sym, 'size.width'.to_sym, :allowVariableBannerSizes, :defaultCode, :rotateInterval, :hash, :timestamp, :username],
               :method => :post
           },
           :create_standard_placement => {
               :url => '/rest-api/placements/update/standard.do',
               :body_parameters => [:zoneId, :type, :name, :description, :adUnitId, :size, 'size.height'.to_sym, 'size.width'.to_sym, :allowVariableBannerSizes, :defaultCode, :rotateInterval, :hash, :timestamp, :username],
               :method => :post
+          },
+          :update_placement => {
+              :url => '/rest-api/placements/update/standard.do',
+              :body_parameters => [:id, :zoneId, :type, :name, :description, :adUnitId, :size, 'size.height'.to_sym, 'size.width'.to_sym, :allowVariableBannerSizes, :defaultCode, :rotateInterval, :hash, :timestamp, :username],
+              :method => :post
+          },
+          :create_placement => {
+              :url => '/rest-api/placements/update/standard.do',
+              :body_parameters => [:zoneId, :type, :name, :description, :adUnitId, :size, 'size.height'.to_sym, 'size.width'.to_sym, :allowVariableBannerSizes, :defaultCode, :rotateInterval, :hash, :timestamp, :username],
+              :method => :post
           }
-
-
       }
     end
 
     def self.replace_params_in_url(url, url_params)
-      url.gsub!('PLACEMENT_ID', url_params[:placementId]) if url.include?('PLACEMENT_ID')
+      url.gsub!('PLACEMENT_ID', url_params[:placementId].to_s) if url.include?('PLACEMENT_ID')
       url
     end
   end
