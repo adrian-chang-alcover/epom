@@ -59,6 +59,10 @@ end
 
 Epom.configure do |config|
   config.epom_server = ENV['epom_server']
+  config.proxy_address = ENV['proxy_address']
+  config.proxy_port = ENV['proxy_port']
+  config.proxy_user = ENV['proxy_user']
+  config.proxy_password = ENV['proxy_password']
 end
 
 Epom::EpomElement.login(ENV['username'], ENV['password'])
