@@ -19,7 +19,7 @@ The bundle:
 
 There's a handy generator that generates the default configuration file into config/initializers directory.
 Run the following generator command, then edit the generated file.
-`$ rails g epom:config`
+`$ rails generate epom:config`
 
 
 ## Usage
