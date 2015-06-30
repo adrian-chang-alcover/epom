@@ -17,9 +17,13 @@ module Epom
   # need a Class for 3.0
   class Configuration #:nodoc:
     include ActiveSupport::Configurable
-    config_accessor :public_key
-    config_accessor :private_key
     config_accessor :epom_server
+    config_accessor :username
+    config_accessor :password
+    config_accessor :proxy_address
+    config_accessor :proxy_port
+    config_accessor :proxy_user
+    config_accessor :proxy_password
 
     def param_name
       config.param_name.respond_to?(:call) ? config.param_name.call : config.param_name

@@ -1,5 +1,10 @@
 Epom.configure do |config|
-	config.public_key = 'public_key'
-	config.private_key = 'private_key'
 	config.epom_server = 'https://n29.epom.com/'
+	config.username = 'username'
+	config.password = 'password'
+
+	config.proxy_address = ''
+	config.proxy_port = ''
+	config.proxy_user = ''
+	config.proxy_password = ''
 end

@@ -6,8 +6,8 @@ module Epom
       debug_output $stderr
 
     def self.login(username, password)
-      @@username = username
-      @@password = password
+      Epom.config.username = username
+      Epom.config.password = password
     end
 
     def self.extended_methods
@@ -47,17 +47,17 @@ module Epom
 
       timestamp = Time.now.to_i * 1000
       if body_params_signature.include?(:hash) and not body_params[:hash]
-        body_params[:hash] = Epom.create_hash(Epom.create_hash(@@password), timestamp)
+        body_params[:hash] = Epom.create_hash(Epom.create_hash(Epom.config.password), timestamp)
       end
       if body_params_signature.include?(:timestamp) and not body_params[:timestamp]
         body_params[:timestamp] = timestamp
       end
       if body_params_signature.include?(:username) and not body_params[:username]
-        body_params[:username] = @@username
+        body_params[:username] = Epom.config.username
       end
 
       if params_validation(url_params, url_params_signature) and params_validation(body_params, body_params_signature)
-        http_proxy ENV['proxy_address'], ENV['proxy_port'], ENV['proxy_user'], ENV['proxy_password']
+        http_proxy Epom.config.proxy_address, Epom.config.proxy_port, Epom.config.proxy_user, Epom.config.proxy_password
         base_uri Epom.config.epom_server
         response = send(method, url, :query => body_params)
         if response.success?
