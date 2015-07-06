@@ -1,10 +1,10 @@
 Epom.configure do |config|
 	config.epom_server = 'https://n29.epom.com/'
-	config.username = 'username'
-	config.password = 'password'
+	config.username = 'network'
+	config.password = 'network'
 
-	config.proxy_address = ''
-	config.proxy_port = ''
-	config.proxy_user = ''
-	config.proxy_password = ''
+	config.proxy_address = nil
+	config.proxy_port = nil
+	config.proxy_user = nil
+	config.proxy_password = nil
 end
