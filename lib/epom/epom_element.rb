@@ -59,6 +59,7 @@ module Epom
       if params_validation(url_params, url_params_signature) and params_validation(body_params, body_params_signature)
         http_proxy Epom.config.proxy_address, Epom.config.proxy_port, Epom.config.proxy_user, Epom.config.proxy_password
         base_uri Epom.config.epom_server
+        puts method_name
         response = send(method, url, :query => body_params)
         if response.success?
           return response.parsed_response
