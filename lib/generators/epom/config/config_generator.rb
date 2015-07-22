@@ -7,7 +7,6 @@ module Epom
 	        if File.exist?('.gitignore')
 	        	File.open('.gitignore','a'){|f| f.write("\nconfig/initializers/epom.rb")}
 	        end
-	        byebug
 	        if File.exist?('../../.gitignore')
 	        	File.open('../../.gitignore','a'){|f| f.write("\ntest/dummy/config/initializers/epom.rb")}
 	        end

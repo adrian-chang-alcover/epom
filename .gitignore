@@ -13,3 +13,6 @@ coverage/
 
 # Ignore application configuration
 /config/application.yml
+
+test/dummy/config/initializers/epom.rb
+test/dummy/config/initializers/epom.rb
