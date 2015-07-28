@@ -1,0 +1,71 @@
+/* ::::: http://epom.com/support/wp-content/themes/epom/style.css ::::: */
+
+body { background: rgb(223, 227, 233) none repeat scroll 0% 0%; font-family: "Lucida Grande","Lucida Sans Regular","Lucida Grande","Lucida Sans Unicode",Geneva,Verdana,sans-serif; font-size: 13px; }
+a { color: rgb(0, 94, 157); }
+img { border: 0px none; }
+.absmid { vertical-align: middle; }
+.container { width: 1000px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; margin: auto; padding: 1px; }
+.header { display: block; background: rgb(235, 238, 242) none repeat scroll 0% 0%; padding: 0px 0px 0px 23px; border-bottom: 1px solid rgb(220, 225, 232); position: relative; z-index: 1; }
+.header > img { display: block; position: relative; z-index: 1; }
+.logo1, .logo2 { position: absolute; display: block; text-decoration: none; overflow: hidden; z-index: 2; }
+.logo1 { height: 50px; left: 23px; top: 22px; width: 188px; }
+.logo2 { height: 40px; left: 278px; top: 20px; width: 100px; }
+.page {  }
+.page .right { width: 610px; min-height: 530px; padding: 43px 30px 30px; float: right; border-left: 1px solid rgb(223, 227, 233); background: transparent url('border_grad.png') repeat-y scroll left top; }
+.page .left { width: 265px; padding: 22px 30px 0px; float: left; }
+.page h1, .searchResultsTitle, .left span.menuTitle { font-size: 24px; font-weight: normal; display: block; border-bottom: 1px dotted rgb(255, 156, 0); clear: both; }
+.page h1 { font-size: 26px; font-weight: bold; margin-bottom: 0px; }
+.page h1 a, .left span.menuTitle a { color: rgb(0, 0, 0); text-decoration: none; }
+.left span.menuTitle { font-size: 18px; margin: 13px 0px; }
+.links ul { padding-left: 0px; }
+.links ul li { list-style-type: none; padding: 2px 0px; }
+.links ul li::before { color: rgb(255, 156, 0); content: "•" ! important; position: absolute; }
+.links li a { text-decoration: none; padding-left: 13px; }
+.authorinfo { color: rgb(152, 152, 152); float: left; font-size: 11px; line-height: 14px; }
+.postinfo { height: 40px; padding: 0px; clear: both; }
+.postcontent { padding: 15px 5px 0px 0px; text-align: justify; }
+.postcontent ul li { line-height: 1.5; margin: 4px 0px; }
+.page .post { clear: both; }
+.footer { margin: -1px; color: rgb(0, 87, 165); font-size: 11px; clear: both; }
+.footer .inner_grad { background: transparent url('footer_grad.png') repeat-x scroll left top; height: 6px; }
+.footer .inner_links { background: rgb(235, 238, 242) none repeat scroll 0% 0%; margin-top: 1px; padding: 14px 10px; overflow: hidden; }
+.footer .inner_links .ll { float: left; }
+.footer .inner_links .lr { float: right; }
+.comments { padding: 50px 5px 0px; }
+.widget_collapscat { list-style-type: none; overflow: hidden; }
+.widget_collapscat h2 { font-size: 18px; font-weight: normal; display: block; border-bottom: 1px dotted rgb(255, 156, 0); clear: both; }
+#widget-collapscat-7-top li a, #widget-collapscat-8-top li a, #widget-collapscat-9-top li a { width: 95% ! important; }
+#widget-collapscat-7-top.collapsing.categories, #widget-collapscat-8-top.collapsing.categories, #widget-collapscat-9-top.collapsing.categories { margin-left: -39px ! important; }
+#widget-collapscat-7-top li li li a, #widget-collapscat-8-top li li li a, #widget-collapscat-9-top li li li a { padding-left: 10px ! important; padding-top: 2px; padding-bottom: 2px; }
+#widget-collapscat-7-top li.collapsing.categories, #widget-collapscat-8-top li.collapsing.categories, #widget-collapscat-9-top li.collapsing.categories { padding: 2px 0px; }
+#widget-collapscat-7-top li.collapsing.categories div, #widget-collapscat-8-top li.collapsing.categories div, #widget-collapscat-9-top li.collapsing.categories div { margin-left: 15px ! important; }
+#widget-collapscat-7-top li.collapsing.categories.self a, #widget-collapscat-8-top li.collapsing.categories.self a, #widget-collapscat-9-top li.collapsing.categories.self a { text-decoration: underline; font-weight: normal ! important; color: rgb(0, 146, 212); }
+#widget-collapscat-7-top li.collapsing.categories.item::before, #widget-collapscat-8-top li.collapsing.categories.item::before, #widget-collapscat-9-top li.collapsing.categories.item::before { content: "•" ! important; color: rgb(255, 156, 0); position: absolute; }
+#MrScrollUp div { width: 110px; overflow: hidden; position: absolute; left: 0px; top: 0px; margin: 0px; padding: 0px; }
+#MrScrollUp .MrScrollUp1 { background: transparent url('rocket_frames.png') no-repeat scroll -149px 0px; opacity: 0; height: 250px; display: none; z-index: 1; }
+#MrScrollUp .MrScrollUp2 { background: transparent none repeat scroll 0% 0%; cursor: pointer; display: block; z-index: 2; height: 100px; }
+#MrScrollUp { z-index: 11; width: 149px; height: 250px; display: block; overflow: hidden; cursor: default; position: fixed; right: 0px; top: 101%; background: transparent url('rocket_frames.png') no-repeat scroll 0px 0px; margin: -125px 0px 0px; padding: 0px; }
+/* ::::: http://epom.com/support/wp-content/plugins/wp-pagenavi/pagenavi-css.css?ver=2.70 ::::: */
+
+#widget-collapscat-7-top li a { display: block; text-decoration: none; margin: 0px; width: 100%; padding: 0px 10em 0px 1em; }
+#widget-collapscat-7-top.collapsing.categories, #widget-collapscat-7-top li.collapsing.categories ul { margin-left: 0px; padding: 0px; }
+#widget-collapscat-7-top li li a { padding-left: 1em; }
+#widget-collapscat-7-top li li li a { padding-left: 2em; }
+#widget-collapscat-7-top li a:hover { text-decoration: none; }
+#widget-collapscat-7-top span.collapsing.categories { border: 0px none; padding: 0px; margin: 0px; cursor: pointer; }
+#widget-collapscat-7-top::before { content: ""; }
+#widget-collapscat-7-top li.collapsing.categories { list-style-type: none; }
+#widget-collapscat-7-top li.collapsing.categories.item::before, #widget-collapscat-7-top li.collapsing.categories::before { content: ""; }
+#widget-collapscat-7-top li.collapsing.categories .sym { cursor: pointer; font-size: 1.1em; font-family: Arial,Helvetica; float: left; padding-right: 5px; }
+#widget-collapscat-9-top li a { display: block; text-decoration: none; margin: 0px; width: 100%; padding: 0px 10em 0px 1em; }
+#widget-collapscat-9-top.collapsing.categories, #widget-collapscat-9-top li.collapsing.categories ul { margin-left: 0px; padding: 0px; }
+#widget-collapscat-9-top li li a { padding-left: 1em; }
+#widget-collapscat-9-top li li li a { padding-left: 2em; }
+#widget-collapscat-9-top li a:hover { text-decoration: none; }
+#widget-collapscat-9-top span.collapsing.categories { border: 0px none; padding: 0px; margin: 0px; cursor: pointer; }
+#widget-collapscat-9-top li.collapsing.categories.self a { font-weight: bold; }
+#widget-collapscat-9-top::before { content: ""; }
+#widget-collapscat-9-top li.collapsing.categories { list-style-type: none; }
+#widget-collapscat-9-top li.collapsing.categories.item::before, #widget-collapscat-9-top li.collapsing.categories::before { content: ""; }
+#widget-collapscat-9-top li.collapsing.categories .sym { cursor: pointer; font-size: 1.1em; font-family: Arial,Helvetica; float: left; padding-right: 5px; }
+.breadcrumb { font-size: 10px; }
