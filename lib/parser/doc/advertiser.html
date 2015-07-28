@@ -1,0 +1,3627 @@
+<!DOCTYPE html>
+<html xmlns:og="http://opengraphprotocol.org/schema/" lang="en-US"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta charset="UTF-8">
+
+
+<link rel="shortcut icon" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/favicon.ico">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+
+<link rel="pingback" href="http://epom.com/support/xmlrpc.php">
+
+
+<meta name="robots" content="index, follow">
+
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.2.5 - http://yoast.com/wordpress/seo/ -->
+<title>Advertiser API | Epom Help Center</title>
+<link rel="canonical" href="http://epom.com/support/advertiser-api-2/">
+<meta property="og:locale" content="en_us">
+<meta property="og:title" content="Advertiser API | Epom Help Center">
+<meta property="og:url" content="http://epom.com/support/advertiser-api-2/">
+<meta property="og:site_name" content="Epom Help Center">
+<meta property="og:type" content="article">
+<!-- / Yoast WordPress SEO plugin. -->
+
+
+
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://epom.com/support/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://epom.com/support/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 3.7.1">
+<link rel="shortlink" href="http://epom.com/support/?p=5854">
+
+
+	
+	
+    
+
+<link rel="stylesheet" type="text/css" href="advertiser_files/default_037.css" media="all">
+</head>
+<body>
+
+<div class="container">
+<div id="MrScrollUp" style="display: none;">
+    <div class="MrScrollUp1"></div>
+    <div class="MrScrollUp2"></div>
+</div>
+
+<div class="header">
+    <a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default.html" class="logo1">&nbsp;</a>
+    <a href="http://epom.com/support" class="logo2">&nbsp;</a>
+    <img src="advertiser_files/header.gif" alt="epom blog">
+
+</div>
+
+<div class="page">
+
+
+
+
+
+
+
+<div class="right">
+<div class="breadcrumb"><a href="http://epom.com/support">Home</a> » <a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_066.html" title="View all posts in Network Account">Network Account</a>, <a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_036.html" title="View all posts in API Reference" rel="category tag">API Reference</a> » Advertiser API</div>
+
+
+<div class="post">
+<h1><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_037.html">Advertiser API</a></h1>
+
+<div class="postcontent">
+<h3 id="contents">Table of Contents</h3>
+<ul>
+<li><a href="#advman">Advertiser Management API</a></li>
+<li><a href="#camman">Campaign Management API</a>
+<ul>
+<li><a href="#camcap">Campaign Capping API</a></li>
+<li><a href="#camlim">Campaign Limits API</a></li>
+<li><a href="#camtar">Campaign Targeting API</a></li>
+<li><a href="#camadc">Campaign Adjusted CPM API</a></li>
+<li><a href="#camppric">Campaign Pricing API</a></li>
+</ul>
+</li>
+<li><a href="#banman">Banner Management API</a>
+<ul>
+<li><a href="#bancap">Banner Capping API</a></li>
+<li><a href="#banlim">Banner Limits API</a></li>
+<li><a href="#bantar">Banner Targeting API</a></li>
+<li><a href="#banlin">Banner Placement Linking API</a></li>
+<li><a href="#banpric">Banner Pricing API</a></li>
+</ul>
+</li>
+<li>
+<ul>
+<a href="#actman">Action Management API</a>
+</ul>
+</li>
+<li>
+<ul>
+<a href="#tempact">Templates Management API</a>
+</ul>
+</li>
+</ul>
+<h3 id="advman" align="center">Advertiser Management</h3>
+<p><!-- NEXT TITLE --></p>
+<h4>Delete Advertiser</h4>
+<p style="white-space: pre-wrap;">Deletes advertiser by given id.</p>
+<p><strong>URL:</strong> /rest-api/advertisers/{advertiserId}/delete.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error</p>
+<p><strong>Response sample:</strong><br>
+200 OK<br>
+{“success”:true} – success<br>
+{“permission_denied”:,”success”:false} – failure due to insufficient privileges</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Advertiser Permissions For User</h4>
+<p style="white-space: pre-wrap;">Get all advertiser shares for user with Access Level info: Can Edit/Can View/Is Owner.</p>
+<p><strong>URL:</strong> /advertiserShares.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error</p>
+<p><strong>Response sample:</strong><br>
+200 OK<br>
+[{"id":1, "name":"campaign1"}, ...]</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Campaigns For Advertiser</h4>
+<p style="white-space: pre-wrap;">Get the list of all campaigns for a given advertiser.</p>
+<p><strong>URL:</strong> /advertiser/{advertiserId}/campaigns.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error</p>
+<p><strong>Response sample:</strong><br>
+200 OK<br>
+[{"id":1, "name":"campaign1"}, ...]</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Advertiser</h4>
+<p style="white-space: pre-wrap;">Creates or updates advertiser info based on whether or not id was provided.</p>
+<p><strong>URL:</strong> /rest-api/advertisers/update.do<br>
+<strong>Method:</strong> PUT<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error</p>
+<p><strong>Response sample:</strong><br>
+200 OK<br>
+{“success”:true, id:} – success, returns id of affected advertiser record<br>
+{“success”:false} – error {“success”:false, “error”:”permission_denied”} – error due to insufficient privileges</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+id – advertiser identifier (mandatory)<br>
+name – advertiser name (optional)<br>
+contactName – advertiser contact name (optional)<br>
+contactEmail – advertiser contact e-mail (optional)<br>
+description – advertiser description (optional)<br>
+categoryId – advertiser category (optional)<br>
+<!-- NEXT TITLE --></p>
+<h3 id="camman" align="center">Campaign Management</h3>
+<p><!-- NEXT TITLE --></p>
+<h4>Create Campaign</h4>
+<p style="white-space: pre-wrap;">Creates campaign.</p>
+<p><strong>URL:</strong> /rest-api/campaign/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request – wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – advertiser with given id not found</p>
+<p><strong>Request Parameters:</strong></p>
+<p>name – name of campaign as a String<br>
+advertiserId – id of the advertiser<br>
+description – description of campaign as a String<br>
+active – active status of campaign as a boolean<br>
+ctrOptimization – switch for CTR optimization setting of campaign as a boolean<br>
+weight – weight of campaign as a integer<br>
+allowNewPlacementsAutolinking – permission for campaign to allow link it’s banners to new placements automatically as boolean.<br>
+autolinkCategories – ID’s of publishing categories for autolinking.</p>
+<p><strong>Response sample:</strong><br>
+200 OK<br>
+{“success”:true} – success<br>
+{“error”:”permission_denied”,”success”:false} – failure due to insufficient privileges</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Copy|Move the campaign</h4>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/{operation}/{advertiserId}.do.<br>
+<strong>Method:</strong> POST.<br>
+<strong>Response format:</strong> application/json.<br>
+<strong>Error codes:</strong></p>
+<ul>
+<li>400 Bad Request – wrong request format. E.g. wrong types for parameters or no campaign|advertiser with such id exists.</li>
+<li>401 Unauthorized – authentication error.</li>
+<li>403 Forbidden – not enough permissions.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.<br>
+<strong>Parameters:</strong></p>
+<ul>
+<li>hash – a MD5 digest of concatenated username’s md5 password and the given timestamp;</li>
+<li>timestamp – UNIX timestamp used in hash generation;</li>
+<li>username – the given username;</li>
+<li>advertiserId – the given banner id;</li>
+<li>campaignId id – of campaign where to move/copy banner to;</li>
+<li>operation – operation to perform (literal, either COPY or MOVE);</li>
+<li>copyCount – numbers of copies, not required, defaults to 1;</li>
+<li>keepBannersLinked – boolean, whether or not preserve banners linkage, defaults to false.</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Delete Campaign</h4>
+<p style="white-space: pre-wrap;">Deletes campaign by given id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/delete.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error</p>
+<p><strong>Response sample:</strong><br>
+200 OK<br>
+{“success”:true} – success<br>
+{“error”:”permission_denied”,”success”:false} – failure due to insufficient privileges</p>
+<p><strong>Parameters:</strong></p>
+<p>hash – an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+campaignId – the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Banners For Campaign</h4>
+<p style="white-space: pre-wrap;">Get the list of all banners for given campaign.</p>
+<p><strong>URL:</strong> /campaign/{campaignId}/banners.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error</p>
+<p><strong>Response sample:</strong><br>
+200 OK<br>
+[{"id":1, "name":"banner1"}, ...]</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Campaign</h4>
+<p style="white-space: pre-wrap;">Get the campaign by id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – no campaign for such id found</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+campaignId – the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Campaigns</h4>
+<p style="white-space: pre-wrap;">Get the list of all campaigns for the given user.</p>
+<p><strong>URL:</strong> /rest-api/campaigns.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Campaign</h4>
+<p style="white-space: pre-wrap;">Updates campaign with given id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/update.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – campaign with given id not found</p>
+<p><strong>Request Parameters:</strong></p>
+<p>name – name of campaign as a String<br>
+description – description of campaign as a String<br>
+active – active status of campaign as a boolean<br>
+ctrOptimization – switch for CTR optimization setting of campaign as a boolean<br>
+weight – weight of campaign as a integer<br>
+allowNewPlacementsAutolinking – permission for campaign to allow link it’s banners to new placements automatically as boolean.<br>
+autolinkCategories – ID’s of publishing categories for autolinking.</p>
+<p><strong>Response sample:</strong><br>
+200 OK<br>
+{“success”:true} – success<br>
+{“error”:”permission_denied”,”success”:false} – failure due to insufficient privileges</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+campaignId – the given campaign id<br>
+<!-- NEXT TITLE --></p>
+<h4 id="camcap" align="center"><span style="text-decoration: underline;">Campaign Capping API</span></h4>
+<p><!-- NEXT TITLE --></p>
+<h4>Get Action Capping</h4>
+<p style="white-space: pre-wrap;">Get the campaign action capping information by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/actionCapping.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – campaign with given id not found</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash – an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation.<br>
+username – the given username.<br>
+campaignId – the given campaign id.<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Click Capping</h4>
+<p style="white-space: pre-wrap;">Get the campaign click capping information by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/clickCapping.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – campaign with given id not found</p>
+<p><strong>Response sample:</strong><br>
+200 OK<br>
+{id: 1, paymentModel: “CPM”, price: 0.03, countries: [{country: "US", price: 0.02}, {country: "UK", price: 0.025}, ... }</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Frequency Capping</h4>
+<p style="white-space: pre-wrap;">Get the campaign frequency capping information by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/frequencyCapping.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - campaign with given id not found</p>
+<p><strong>Response sample:</strong><br>
+200 OK<br>
+{id: 1, paymentModel: "CPM", price: 0.03, countries: [{country: "US", price: 0.02}, {country: "UK", price: 0.025}, ... }</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Remove Action Capping</h4>
+<p style="white-space: pre-wrap;">Removes the campaign action capping by campaign id.</p>
+<p><strong>URL:</strong> rest-api/campaign/{campaignId}/actionCapping.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Remove Click Capping</h4>
+<p style="white-space: pre-wrap;">Removes the campaign click capping by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/clickCapping.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Remove Frequency Capping</h4>
+<p style="white-space: pre-wrap;">Removes the campaign frequency capping by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/frequencyCapping.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Set Action Capping</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign action capping values by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/actionCapping/set.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - campaign not found</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+amount - amount of capping<br>
+period - period for capping<br>
+periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR<br>
+evenDistribution - - value for even distribution (true/false)<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Set Click Capping</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign click capping values by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/clickCapping/set.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - campaign not found</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+amount - amount of capping<br>
+period - period for capping<br>
+periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR<br>
+evenDistribution - value for even distribution (true/false)<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Sets (and enables if was disabled) the campaign click capping values by campaign id</h4>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/clickCapping/update.do.<br>
+<strong>Method:</strong> POST.<br>
+<strong>Response format:</strong> application/json.<br>
+<strong>Error codes:</strong></p>
+<ul>
+<li>400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists.</li>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+<li>404 Not Found - no click capping enabled or campaign not found.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.<br>
+<strong>Parameters:</strong></p>
+<ul>
+<li>hash - a MD5 digest of concatenated username's md5 password and the given timestamp;</li>
+<li>timestamp - UNIX timestamp used in hash generation;</li>
+<li>username - the given username;</li>
+<li>id - id of capping record to update;</li>
+<li>campaignId - the given campaign id;</li>
+<li>amount - amount of capping;</li>
+<li>period - period for capping;</li>
+<li>periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR;</li>
+<li>evenDistribution - value for even distribution (true/false).</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Set Frequency Capping</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign frequency capping values by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/frequencyCapping/set.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - campaign not found</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+amount - amount of capping<br>
+period - period for capping<br>
+periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR<br>
+evenDistribution - value for even distribution (true/false)<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Action Capping</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign action capping values by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/actionCapping/update.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - campaign not found</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+amount - amount of capping<br>
+period - period for capping<br>
+periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR<br>
+evenDistribution - value for even distribution (true/false)<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Click Capping</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign click capping values by campaign id.</p>
+<p><strong>URL:</strong> //rest-api/campaign/{campaignId}/clickCapping/update.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - campaign not found</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+amount - amount of capping<br>
+period - period for capping<br>
+periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR<br>
+evenDistribution - value for even distribution (true/false)<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Frequency Capping</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign frequency capping values by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/frequencyCapping/update.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - campaign not found</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+amount - amount of capping<br>
+period - period for capping<br>
+periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR<br>
+evenDistribution - value for even distribution (true/false)<br>
+<!-- NEXT TITLE --></p>
+<h4 id="camlim" align="center"><span style="text-decoration: underline;">Campaign Limits API</span></h4>
+<p><!-- NEXT TITLE --></p>
+<h4>Disable Limits</h4>
+<p style="white-space: pre-wrap;">Disables campaign limits.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/limits.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Limits</h4>
+<p style="white-space: pre-wrap;">Get the campaign limits information by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/limits.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no limits set for such campaign.</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Reset Limits</h4>
+<p style="white-space: pre-wrap;">Resets the campaign limits counter values by campaign id and counter type.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/limits/reset.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no limit enabled for the campaign</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+limitCounters - list of counters to reset, available values: 
+TOTAL_IMPRESSIONS, TOTAL_CLICKS, TOTAL_REVENUE, DAILY_IMPRESSIONS, 
+DAILY_CLICKS, DAILY_REVENUE<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Set Limits</h4>
+<p style="white-space: pre-wrap;">Set the campaign limits information by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/limits/set.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Request Parameters:</strong></p>
+<p>Long totalImpressionsLimit; Long totalClicksLimit; Double 
+totalBudgetLimit; Long dailyImpressionsLimit; Long dailyClicksLimit; 
+Double dailyBudgetLimit; Long totalImpressions; Long totalClicks; Double
+ totalBudget; Long dailyImpressions; Long dailyClicks; Double 
+dailyBudget;<br>
+startDate - limit start, "yyyy-MM-dd-HH-mm"<br>
+endDate - limit end, "yyyy-MM-dd-HH-mm"<br>
+totalImpressionsLimit - limit for impressions<br>
+totalClicksLimit - limit for clicks<br>
+totalBudgetLimit - limit for budget<br>
+dailyImpressionsLimit - daily limit for impressions<br>
+dailyClicksLimit - daily limit for clicks<br>
+dailyBudgetLimit - daily limit for budget<br>
+totalImpressions - current value for impressions<br>
+totalClicks - current value for clicks<br>
+totalBudget - current value for budget<br>
+dailyImpressions - value for impressions for current day<br>
+dailyClicks - value for clicks for current day<br>
+dailyBudget - value for budget for current day</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Limits</h4>
+<p style="white-space: pre-wrap;">Updates the campaign limits information by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/limits/update.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No campaign or campaign pricing is not enabled for the given campaign.<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no limits enabled or campaign not found</p>
+<p><strong>Request Parameters:</strong></p>
+<p>Long totalImpressionsLimit; Long totalClicksLimit; Double 
+totalBudgetLimit; Long dailyImpressionsLimit; Long dailyClicksLimit; 
+Double dailyBudgetLimit; Long totalImpressions; Long totalClicks; Double
+ totalBudget; Long dailyImpressions; Long dailyClicks; Double 
+dailyBudget;<br>
+startDate - limit start, milliseconds<br>
+endDate - limit end, milliseconds<br>
+totalImpressionsLimit - limit for impressions<br>
+totalClicksLimit - limit for clicks<br>
+totalBudgetLimit - limit for budget<br>
+dailyImpressionsLimit - daily limit for impressions<br>
+dailyClicksLimit - daily limit for clicks<br>
+dailyBudgetLimit - daily limit for budget<br>
+totalImpressions - current value for impressions<br>
+totalClicks - current value for clicks<br>
+totalBudget - current value for budget<br>
+dailyImpressions - value for impressions for current day<br>
+dailyClicks - value for clicks for current day<br>
+dailyBudget - value for budget for current day</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --></p>
+<h4 id="camtar" align="center"><span style="text-decoration: underline;">Campaign Targeting API</span></h4>
+<p><!-- NEXT TITLE --></p>
+<h4>Get Targeting</h4>
+<p style="white-space: pre-wrap;">Get the campaign targeting by id and by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/{targetId}.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no targeting with given id found for given campaign<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Targetings</h4>
+<p style="white-space: pre-wrap;">Get the campaign targetings by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targetings.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Targeting Types</h4>
+<p style="white-space: pre-wrap;">Get the campaign targeting types by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/types.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no targeting with given id found for given campaign<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Remove Targeting</h4>
+<p style="white-space: pre-wrap;">Removes targeting by targeting id and campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/{targetId}/delete.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no targeting with given id found for given campaign<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+targetId - the given target id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get available operating systems values for operating system targeting type</h4>
+<p><strong>URL:</strong> /rest-api/targeting/os/values.do.</p>
+<p><strong>Method:</strong> GET.</p>
+<p><strong>Response format:</strong> application/json.</p>
+<p><strong>Error codes:</strong></p>
+<ul>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+<li>404 Not Found - no banner found.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username.</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get available values of version of operating systems for operating system targeting type</h4>
+<p><strong>URL:</strong> /rest-api/targeting/os/{osName}/versions.do.</p>
+<p><strong>Method:</strong> GET.</p>
+<p><strong>Response format:</strong> application/json.</p>
+<p><strong>Error codes:</strong></p>
+<ul>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+<li>404 Not Found - no banner found.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username;</li>
+<li>osName - the name of Operation System from list of available OS values.</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Browser Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the browser targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/browser/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+rule - EXCLUDE or INCLUDE<br>
+browser -<br>
+relation - - values are LOWER,GREATER,LOWER_EQUAL,GREATER_EQUAL,EQUAL<br>
+browserVersion -<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Channel Target</h4>
+<p style="white-space: pre-wrap;">Sets the campaign channel targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/channel/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+channel -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Coookie Value Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign cookie value targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/cookie/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+cookieName -<br>
+cookieValue -<br>
+rule - EXCLUDE or INCLUDE<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Country Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign country targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/country/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+countryCode - - ISO country code<br>
+rule - EXCLUDE or INCLUDE<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Custom Parameter Target</h4>
+<p style="white-space: pre-wrap;">Sets custom parameter targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/custom/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+rule - EXCLUDE or INCLUDE<br>
+expression - - valid expression (Sample: ($p1==1 || $p1=='a') &amp;&amp; ($p2&gt;=12 &amp;&amp; $p2&lt;=22) )<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Day Of Week Target</h4>
+<p style="white-space: pre-wrap;">Sets day of week targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/dayofweek/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+rule - EXCLUDE or INCLUDE<br>
+dayOfWeek - available values are MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Device Format Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign device targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/deviceformat/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+deviceFormat -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Device Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign device targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/device/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+device -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Device Vendor Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign device vendor targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/devicevendor/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+deviceVendor -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Domain Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign referrer domain targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/domain/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+domain -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Ip Range Target</h4>
+<p style="white-space: pre-wrap;">Sets ip range targeting by campaign id.<br>
+Params - Valid IP range (Sample: from 194.222.012.001 to 194.223.07.01)</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/iprange/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+ipFrom - valid ip from for range<br>
+ipTo - valid ip to for range<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Language Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the campaign language targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/language/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+languageCode - - language code<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Location Target</h4>
+<p style="white-space: pre-wrap;">Sets location targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/location/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+countryCode -<br>
+regionName -<br>
+cityName -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Mobile Carrier Target</h4>
+<p style="white-space: pre-wrap;">Sets the campaign mobile carrier targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/mobilecarrier/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+rule - EXCLUDE or INCLUDE<br>
+mobileCarriers - - array of mobile carrier names</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create OS Target</h4>
+<p style="white-space: pre-wrap;">Sets operating system targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/os/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+operatingSystem - -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Screen Resolution Target</h4>
+<p style="white-space: pre-wrap;">Sets the campaign screen resolution targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/resolution/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+relation - - available values LOWER, GREATER, LOWER_EQUAL, GREATER_EQUAL, EQUAL<br>
+screenWidth -<br>
+screenHeight -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Time Range Target</h4>
+<p style="white-space: pre-wrap;">Sets time range targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/timerange/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+timeFrom - String in format 24h format hh:MM , where hh - hours, MM - minutes<br>
+timeTo - String in format 24h format hh:MM , where hh - hours, MM - minutes<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Wifi Traffic Target</h4>
+<p style="white-space: pre-wrap;">Sets the campaign wifi traffic targeting by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/wifi/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Disable Targeting</h4>
+<p style="white-space: pre-wrap;">Disables targeting for given campaign.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/disable.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no targeting with given id found for given campaign<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Enable Targeting</h4>
+<p style="white-space: pre-wrap;">Enables targeting for given campaign.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/targeting/enable.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no targeting with given id found for given campaign<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id</p>
+<p><!-- NEXT TITLE --></p>
+<p><!-- NEXT TITLE --></p>
+<h4 id="camadc" align="center"><span style="text-decoration: underline;">Campaign Adjusted CPM API</span></h4>
+<p><!-- NEXT TITLE --></p>
+<h4>Add Fixed Cpm Country Pricing</h4>
+<p style="white-space: pre-wrap;">Create or update Adjusted CPM value.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/adjustedCpm/value.do<br>
+<strong>Method:</strong> PUT<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+value - the value of adjustment<br>
+countryCode - the 2 symbol country code corresponding to ISO 3166<br>
+date - the date of adjustment application</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Adjusted Cpm Country Trigger</h4>
+<p style="white-space: pre-wrap;">Enabe or disable Adjusted CPM value.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/adjustedCpm.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+enable - true if CPM Adjustment should be enabled and false otherwise</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Adjusted Cpm List</h4>
+<p style="white-space: pre-wrap;">List of Adjusted CPM values.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/adjustedCpm/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --></p>
+<h3 id="camppric" align="center">Campaign Pricing API</h3>
+<p><!-- NEXT TITLE --></p>
+<h4>Get Campaign Pricing</h4>
+<p style="white-space: pre-wrap;">Get the campaign pricing information by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/pricing.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no campaign pricing for such campaign</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Campaign Country Pricing</h4>
+<p style="white-space: pre-wrap;">Update the country campaign pricing information by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/pricing/{countryCode}.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. E.g. wrong types for parameters, no campaign or country with such code exists, or campaign pric<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Request Parameters:</strong></p>
+<p>price - campaign price as a double</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+countryCode - 2 symbol country code corresponding to ISO 3166</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update the campaign pricing information by campaign id</h4>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/campaignPricing/actionPricing.do.</p>
+<p><strong>Method:</strong> POST.</p>
+<p><strong>Response format:</strong> application/json.</p>
+<p><strong>Error codes:</strong></p>
+<ul>
+<li>400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists.</li>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.</p>
+<p>Request parameters:<br></p>
+<ul>
+<li>price - campaign price as a double;</li>
+<li>actionName - actionName is a string corresponding to name of existing action in specified campaign;</li>
+<li>actionKey - actionKey is a string corresponding to key of existing action in specified campaign.</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash - a MD5 digest of concatenated username's md5 password and the given timestamp;</li>
+<li>timestamp - UNIX timestamp used in hash generation;</li>
+<li>username - the given username;</li>
+<li>campaignId - the given campaign id.</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Disable Campaign Pricing</h4>
+<p style="white-space: pre-wrap;">Disables campaign pricing.</p>
+<p><strong>URL:</strong> /rest-api/campaigns/{campaignId}/pricing.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+<!-- NEXT TITLE --></p>
+<p><!-- NEXT TITLE --></p>
+<h4>Update Campaign Country Pricing Batch</h4>
+<p style="white-space: pre-wrap;">Update the country campaign pricing information by campaign id from csv pricing file.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/pricing/batch.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign exists, or campaign pricing disabled for the given cam<br>
+Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Request Parameters:</strong></p>
+<p>countryPricing - csv formatted file with country prices</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id<br>
+countryPrices - csv formatted file with country prices<br>
+<!-- NEXT TITLE --></p>
+<p><!-- NEXT TITLE --></p>
+<h4>Update Campaign Pricing</h4>
+<p style="white-space: pre-wrap;">Update the campaign pricing information by campaign id.</p>
+<p><strong>URL:</strong> /rest-api/campaign/{campaignId}/pricing.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Request Parameters:</strong></p>
+<p>price - campaign price as a double<br>
+paymentModel - FIXED_PRICE<br>
+pricingType - CPM, CPC or CPA</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+campaignId - the given campaign id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h3 id="banman" align="center">Banner Management</h3>
+<p><!-- NEXT TITLE --></p>
+<h4>Creates banner for given campaign id</h4>
+<p><strong>URL:</strong> /rest-api/banner/create.do.</p>
+<p><strong>Method:</strong> POST.</p>
+<p><strong>Response format:</strong> application/json.</p>
+<p><strong>Error codes:</strong></p>
+<ul>
+<li>400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists.</li>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.</p>
+<p>Request parameters:<br></p>
+<ul>
+<li><b>placementType</b> - required, values are SITE_PLACEMENT,VIDEO_PLACEMENT, APPLICATION_PLACEMENT or MOBILE_SITE_PLACEMENT</li>
+<li><b>campaignId</b> - required, the given campaign id</li>
+<li><b>active</b> - active status of banner as a boolean</li>
+<li><b>name</b> </li>
+<li><b>allowNewPlacementsAutoLinking</b> - permission for banner to be linked to new placements automatically as boolean</li>
+<li><b>autolinkCategories</b> - ID's of publishing categories for autolinking.</li>
+<li><b>weight</b> - integer value</li>
+<li><b>adUnitId</b>  - available values - see /rest-api/banner/adunit/values.do  </li>
+<li><b>adUnitHeight</b> - height, required for Custom ad unit. ignored for not a Custom ad unit. (long value)
+</li><li><b>adUnitWidth</b> - width, required for Custom ad unit. ignored for not a Custom ad unit. (long value)
+</li><li><b>bannerType</b> - available values are EXTERNAL_FILE, CODE, MOBILE_ADVERTISING_NETWORK, LOCAL_FILE, EXTERNAL_FILE, EXTERNAL_VIDEO, LOCAL_VIDEO, APPLICATION_ADVERTISING_NETWORK, TEMPLATE</li>
+<li><b>flashBannerLink</b> </li>
+<li><b>imageBannerLink</b> </li>
+<li><b>videoFileLink</b> </li>
+<li><b>flashFile</b> </li>
+<li><b>imageFile</b> </li>
+<li><b>videoFile</b> </li>
+<li><b>templateId</b>  - id of template being used if banner type is TEMPLATE. Required by template properties are to be passed along.</li>
+<li><b>thirdTrackingCode</b> </li>
+<li><b>code</b> -  for CODE banner type </li>
+<li><b>url</b> - for EXTERNAL_FILE  banner type</li>
+<li><b>inStreamVideoType</b> - for video banners,  values are LINEAR_VIDEO_AD, NON_LINEAR_VIDEO_AD</li>
+<li><b>mobileAdvertisingNetwork</b> - for MOBILE_ADVERTISING_NETWORK  banner type</li>
+<li><b>mobileAdvertisingNetworkParameters</b> - map of parameters,for MOBILE_ADVERTISING_NETWORK  banner type,<br>
+for example: mobileAdvertisingNetworkParameters[PUBLISHER_ALIAS]=somepub, list of available params for each network<br>
+can be found using /rest-api/banner/mobilenetworks.do
+</li>
+<li><b>applicationOperatingSystem</b> – required for APPLICATION_ADVERTISING_NETWORK  banner type, values are ANDROID, IOS </li>
+<li><b>applicationAdCategory</b> – required for APPLICATION_ADVERTISING_NETWORK  banner type, values are INTERSTITIAL, BANNER </li>
+<li><b>applicationAdvertisingNetwork</b> – for APPLICATION_ADVERTISING_NETWORK  banner type </li>
+<li><b>applicationAdvertisingNetworkParameters</b> – map of parameters,for APPLICATION_ADVERTISING_NETWORK  banner type,
+</li>
+<li><b>additionalParameters['flashVars']</b> – additional parameters for flash creative (if present). Format: key=value, url encoded.</li>
+</ul>
+<p>
+Response sample:<br><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username’s md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username.</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Copy|Move the banner</h4>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/{operation}/{campaignId}.do.</p>
+<p><strong>Method:</strong> POST.</p>
+<p><strong>Response format:</strong> application/json.</p>
+<p><strong>Error codes:</strong></p>
+<ul>
+<li>400 Bad Request – wrong request format. E.g. wrong types for parameters or no banner|campaign with such id exists.</li>
+<li>401 Unauthorized – authentication error.</li>
+<li>403 Forbidden – not enough permissions.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username’s md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username;</li>
+<li>bannerId – the given banner id;</li>
+<li>campaignId – id of campaign where to move/copy banner to;</li>
+<li>operation – operation to perform (literal, either COPY or MOVE);</li>
+<li>copyCount – numbers of copies, not required, defaults to 1;</li>
+<li>keepBannersLinked – boolean, whether or not preserve banners linkage, defaults to false.</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Banner</h4>
+<p style="white-space: pre-wrap;">Get the banner by id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – no banner for such id found</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+bannerId – the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Banners</h4>
+<p style="white-space: pre-wrap;">Get the list of all banners for the given user.</p>
+<p><strong>URL:</strong> /rest-api/banners.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+advertisingCategories – IDs of categories to filter down result to (optional)<br>
+campaignId – ID of banners’ parent campaign (optional).</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Banners URLs</h4>
+<p style="white-space: pre-wrap;">Get the list of configured landing urls for given banners</p>
+<p><strong>URL:</strong> /rest-api/banners/urls.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+advertisingCategories – IDs of advertising categories to filter down result to (optional)<br>
+bannerIds – IDs of banners to filter down result to (optional)</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Banner</h4>
+<p style="white-space: pre-wrap;">Update the banner active state, autolinking facility and autolinking categories.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/update.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request – wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions</p>
+<p><strong>Request Parameters:</strong></p>
+<p>active – active status of banner as a boolean<br>
+allowNewPlacementsAutoLinking – permission for banner to be linked to new placements automatically as boolean<br>
+autolinkCategories – ID’s of publishing categories for autolinking.</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+bannerId – the given banner id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Delete Banner</h4>
+<p style="white-space: pre-wrap;">Deletes the banner.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/delete.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request – wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+bannerId – the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Ad Unit Values By Banner Type</h4>
+<p style="white-space: pre-wrap;">Get the available banner adunit values.</p>
+<p><strong>URL:</strong> /rest-api/banners/{bannerType}/adunit/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – no banner for such id found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+bannerType – type of banner. Available values are LOCAL_FILE, EXTERNAL_FILE, CODE, MOBILE_ADVERTISING_NETWORK, APPLICATION_ADVERTISING_NETWORK, LOCAL_VIDEO, EXTERNAL_VIDEO, URL, VAST_2_0_TAG_URL, TEMPLATE, OPENRTB_DSP</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Banner Ad Unit Values</h4>
+<p style="white-space: pre-wrap;">Get the available banner adunit values.</p>
+<p><strong>URL:</strong> /rest-api/banner/adunit/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – no banner for such id found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+placementType – - available values are SITE_PLACEMENT or MOBILE_SITE_PLACEMENT</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Mobile Networks</h4>
+<p style="white-space: pre-wrap;">Get the available mobile advertising networks.</p>
+<p><strong>URL:</strong> /rest-api/banner/mobilenetworks.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – no banner for such id found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Placements For Banner</h4>
+<p style="white-space: pre-wrap;">Get the banner by id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/placements.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – no banner for such id found<br>
+<strong>Response sample:</strong><br>
+200 OK<br>
+{id: 1, name: “bannerName1″}</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+bannerId – the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Banners Urls Batch</h4>
+<p style="white-space: pre-wrap;">Update landing urls for specified banners.</p>
+<p><strong>URL:</strong> /rest-api/banners/urls.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request – wrong request format. E.g. wrong types for parameters or no banner exists.<br>
+401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+Request body: json formatted string of banner to url mappings as follows:<br>
+[{"id":1,"url":"http://example.com"}, ...]</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p>Method returns json formatted string with errors that occurred during execution. Format:<br>
+{“success”:false, : } Example:<br>
+{“160″:”no_url_property_found”,”success”:false}</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username</p>
+<p><!-- NEXT TITLE --></p>
+<h4 id="bancap" align="center"><span style="text-decoration: underline;">Banner Capping API</span></h4>
+<p><!-- NEXT TITLE --></p>
+<h4>Get Action Capping</h4>
+<p style="white-space: pre-wrap;">Get the banner action capping information by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/actionCapping.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – no action capping set for such banner<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+bannerId – the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Click Capping</h4>
+<p style="white-space: pre-wrap;">Get the banner click capping information by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/clickCapping.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – no click capping set for such banner<br>
+<strong>Response sample:</strong><br>
+200 OK<br>
+{id: 1, paymentModel: “CPM”, price: 0.03, countries: [{country: "US", price: 0.02}, {country: "UK", price: 0.025}, ... }</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Frequency Capping</h4>
+<p style="white-space: pre-wrap;">Get the banner frequency capping information by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/frequencyCapping.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no frequency capping set for such banner<br>
+<strong>Response sample:</strong><br>
+200 OK<br>
+{id: 1, paymentModel: "CPM", price: 0.03, countries: [{country: "US", price: 0.02}, {country: "UK", price: 0.025}, ... }</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Remove Action Capping</h4>
+<p style="white-space: pre-wrap;">Removes the banner action capping by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/actionCapping.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Remove Click Capping</h4>
+<p style="white-space: pre-wrap;">Removes the banner click capping by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/clickCapping.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Remove Frequency Capping</h4>
+<p style="white-space: pre-wrap;">Removes the banner frequency capping by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/frequencyCapping.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Set Action Capping</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner action capping values by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/actionCapping/set.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - banner not found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+amount - amount of capping<br>
+period - period for capping<br>
+periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR<br>
+evenDistribution - - value for even distribution (true/false)</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Set Click Capping</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner click capping values by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/clickCapping/set.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - banner not found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+amount - amount of capping<br>
+period - period for capping<br>
+periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR<br>
+evenDistribution - - value for even distribution (true/false)</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Set Frequency Capping</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner frequency capping values by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/frequencyCapping/set.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - banner not found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+amount - amount of capping<br>
+period - period for capping<br>
+periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR<br>
+evenDistribution - - value for even distribution (true/false)</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Action Capping</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner action capping values by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/actionCapping/update.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no click capping enabled or banner not found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+amount - amount of capping<br>
+period - period for capping<br>
+periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR<br>
+evenDistribution - - value for even distribution (true/false)</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Click Capping</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner click capping values by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/clickCapping/update.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no click capping enabled or banner not found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+amount - amount of capping<br>
+period - period for capping<br>
+periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR<br>
+evenDistribution - - value for even distribution (true/false)</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Frequency Capping</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner frequency capping values by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/frequencyCapping/update.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no frequency capping enabled or banner not found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+amount - amount of capping<br>
+period - period for capping<br>
+periodType - period type, available values: HOUR, DAY, WEEK, MONTH, YEAR<br>
+evenDistribution - - value for even distribution (true/false)</p>
+<p><!-- NEXT TITLE --></p>
+<h4 id="banlim" align="center"><span style="text-decoration: underline;">Banner Limits API</span></h4>
+<p><!-- NEXT TITLE --></p>
+<h4>Disable Limits</h4>
+<p style="white-space: pre-wrap;">Disables banner limits.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/limits.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Limits</h4>
+<p style="white-space: pre-wrap;">Get the banner limits information by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/limits.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no limits set for such banner<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Reset Limits</h4>
+<p style="white-space: pre-wrap;">Resets the banner limits counter values by banner id and counter type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/limits/reset.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no limit enabled for the banner<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+limitCounters - list of counters to reset, available values: TOTAL_IMPRESSIONS, TOTAL_CLICKS, TOTAL_REVENUE, DAILY_IMPRESSIONS, DAILY_CLICKS, DAILY_REVENUE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Set Limits</h4>
+<p style="white-space: pre-wrap;">Set the banner limits information by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/limits/set.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Request Parameters:</strong><br>
+Long totalImpressionsLimit; Long totalClicksLimit; Double totalBudgetLimit; Long dailyImpressionsLimit; Long dailyClicksLimit; Double dailyBudgetLimit; Long totalImpressions; Long totalClicks; Double totalBudget; Long dailyImpressions; Long dailyClicks; Double dailyBudget;<br>
+startDate - limit start, "yyyy-MM-dd-HH-mm"<br>
+endDate - limit end, "yyyy-MM-dd-HH-mm"<br>
+totalImpressionsLimit - limit for impressions<br>
+totalClicksLimit - limit for clicks<br>
+totalBudgetLimit - limit for budget<br>
+dailyImpressionsLimit - daily limit for impressions<br>
+dailyClicksLimit - daily limit for clicks<br>
+dailyBudgetLimit - daily limit for budget<br>
+totalImpressions - current value for impressions<br>
+totalClicks - current value for clicks<br>
+totalBudget - current value for budget<br>
+dailyImpressions - value for impressions for current day<br>
+dailyClicks - value for clicks for current day<br>
+dailyBudget - value for budget for current day<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Limits</h4>
+<p style="white-space: pre-wrap;">Updates the banner limits information by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/limits/update.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no limits enabled or banner not found<br>
+<strong>Request Parameters:</strong><br>
+Long totalImpressionsLimit; Long totalClicksLimit; Double totalBudgetLimit; Long dailyImpressionsLimit; Long dailyClicksLimit; Double dailyBudgetLimit; Long totalImpressions; Long totalClicks; Double totalBudget; Long dailyImpressions; Long dailyClicks; Double dailyBudget;<br>
+startDate - limit start, milliseconds<br>
+endDate - limit end, milliseconds<br>
+totalImpressionsLimit - limit for impressions<br>
+totalClicksLimit - limit for clicks<br>
+totalBudgetLimit - limit for budget<br>
+dailyImpressionsLimit - daily limit for impressions<br>
+dailyClicksLimit - daily limit for clicks<br>
+dailyBudgetLimit - daily limit for budget<br>
+totalImpressions - current value for impressions<br>
+totalClicks - current value for clicks<br>
+totalBudget - current value for budget<br>
+dailyImpressions - value for impressions for current day<br>
+dailyClicks - value for clicks for current day<br>
+dailyBudget - value for budget for current day<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --></p>
+<h4 id="bantar" align="center"><span style="text-decoration: underline;">Banner Targeting API</span></h4>
+<p><!-- NEXT TITLE --></p>
+<h4>Create Browser Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the browser targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+rule - EXCLUDE or INCLUDE<br>
+browser -<br>
+relation -<br>
+browserVersion -</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Channel Target</h4>
+<p style="white-space: pre-wrap;">Sets the banner channel targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/channel/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+channel -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Coookie Value Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner cookie value targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/cookie/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+cookieName -<br>
+cookieValue -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Country Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner country targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/country/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+countryCode - - ISO country code<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Custom Parameter Target</h4>
+<p style="white-space: pre-wrap;">Sets custom parameter targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/custom/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+rule - EXCLUDE or INCLUDE<br>
+expression - - valid expression (Sample: ($p1==1 || $p1=='a') &amp;&amp; ($p2&gt;=12 &amp;&amp; $p2&lt;=22) )</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Day Of Week Target</h4>
+<p style="white-space: pre-wrap;">Sets day of week targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/dayofweek/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+rule - EXCLUDE or INCLUDE<br>
+dayOfWeek - - available values are MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Device Format Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner device targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/deviceformat/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+deviceFormat -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Device Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner mobile carrier targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/mobilecarrier/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+device -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Device Vendor Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner device vendor targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/devicevendor/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+deviceVendor -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Domain Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner referrer domain targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/domain/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+domain -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Ip Range Target</h4>
+<p style="white-space: pre-wrap;">Sets ip range targeting by banner id.<br>
+Params - Valid IP range (Sample: from 194.222.012.001 to 194.223.07.01)</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/iprange/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+ipFrom - valid ip from for range<br>
+ipTo - valid ip to for range<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Language Target</h4>
+<p style="white-space: pre-wrap;">Sets (and enables if was disabled) the banner language targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/language/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+languageCode - - language code<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Location Target</h4>
+<p style="white-space: pre-wrap;">Sets location targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/location/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+countryCode -<br>
+regionName -<br>
+cityName -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Mobile Carrier Target</h4>
+<p style="white-space: pre-wrap;">Sets the banner mobile carrier targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/mobilecarrier/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+rule - EXCLUDE or INCLUDE<br>
+mobileCarriers - - array of mobile carrier names</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create OS Target</h4>
+<p style="white-space: pre-wrap;">Sets operating system targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/os/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+operatingSystem - -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Screen Resolution Target</h4>
+<p style="white-space: pre-wrap;">Sets the banner screen resolution targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/resolution/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+relation - - available values LOWER, GREATER, LOWER_EQUAL, GREATER_EQUAL, EQUAL<br>
+screenWidth -<br>
+screenHeight -<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Time Range Target</h4>
+<p style="white-space: pre-wrap;">Sets time range targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/timerange/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+timeFrom - String in format 24h format hh:MM , where hh - hours, MM - minutes<br>
+timeTo - String in format 24h format hh:MM , where hh - hours, MM - minutes<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Create Wifi Traffic Target</h4>
+<p style="white-space: pre-wrap;">Sets the banner wifi traffic targeting by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/wifi/create.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+rule - EXCLUDE or INCLUDE</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Targeting</h4>
+<p style="white-space: pre-wrap;">Get the banner targeting by id and by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/{targetId}.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no targeting with given id found for given banner<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Targetings</h4>
+<p style="white-space: pre-wrap;">Get the banner targetings by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targetings.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Targeting Types</h4>
+<p style="white-space: pre-wrap;">Get the banner targeting types by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/types.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no targeting with given id found for given banner<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Remove Targeting</h4>
+<p style="white-space: pre-wrap;">Removes targeting by targeting id and banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/{targetId}/delete.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no targeting with given id found for given banner<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+targetId - the given target id<br>
+<!-- NEXT TITLE --></p>
+<p><!-- NEXT TITLE --></p>
+<h4>Disable Targeting</h4>
+<p style="white-space: pre-wrap;">Disables targeting for given banner.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/disable.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no targeting with given id found for given banner<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Enable Targeting</h4>
+<p style="white-space: pre-wrap;">Enables targeting for given banner.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/enable.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no targeting with given id found for given banner<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4 id="banlin" align="center"><span style="text-decoration: underline;">Banner Placement Linking API</span></h4>
+<p><!-- NEXT TITLE --></p>
+<h4>Create or Update Banner Placements</h4>
+<p style="white-space: pre-wrap;">Overwrites banner to placement links.</p>
+<p><strong>URL:</strong> /rest-api/banners/{bannerId}/placements.do<br>
+<strong>Method:</strong> PUT<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized - authentication error<br>
+<strong>Response sample:</strong><br>
+200 OK<br>
+{"success":true, id:} - success, returns id of affected zone record<br>
+{"success":false} - error {"success":false, "error":"permission_denied"} - error due to insufficient privileges</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+ids - placements identifiers (mandatory)</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Delete Banner Placements</h4>
+<p style="white-space: pre-wrap;">Removes banner to placement links.</p>
+<p><strong>URL:</strong> /rest-api/banners/{bannerId}/placements.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized - authentication error<br>
+<strong>Response sample:</strong><br>
+200 OK<br>
+{"success":true, id:} - success, returns id of affected zone record<br>
+{"success":false} - error {"success":false, "error":"permission_denied"} - error due to insufficient privileges</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+removeIds - ids of new placements to link banner (mandatory)<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Banner Placements List</h4>
+<p style="white-space: pre-wrap;">Get the list of all linked placements for given banner. Returns only banners of types SITE_PLACEMENT, MOBILE_SITE_PLACEMENT and NON_STANDARD_SITE_PLACEMENT</p>
+<p><strong>URL:</strong> /rest-api/banners/{bannerId}/placements.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized - authentication error<br>
+<strong>Response sample:</strong><br>
+200 OK<br>
+[{"id":1, "name":"First Placement"}, ...]</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username’s md5 password and a given timestamp<br>
+timestamp – UNIX timestamp used in hash generation<br>
+username – the given username<br>
+<!-- NEXT TITLE --></p>
+<h4 id="bantar" align="center"><span style="text-decoration: underline;">Banner Pricing API</span></h4>
+<p><!-- NEXT TITLE --></p>
+<h4>Get Banner Pricing</h4>
+<p style="white-space: pre-wrap;">Get the banner pricing information by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/pricing.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized – authentication error<br>
+403 Forbidden – not enough permissions<br>
+404 Not Found – no banner pricing for such banner<br>
+<strong>Response sample:</strong><br>
+200 OK<br>
+{id: 1, paymentModel: “CPM”, price: 0.03, countries: [{country: "US", price: 0.02}, {country: "UK", price: 0.025}, ... }</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Disable Banner Country Pricing</h4>
+<p style="white-space: pre-wrap;">Remove country banner pricing by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/pricing/{countryCode}.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. No banner or banner pricing is not enabled for the given banner<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+countryCode - 2 symbol country code corresponding to ISO 3166<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Disable Banner Pricing</h4>
+<p style="white-space: pre-wrap;">Disables banner pricing.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/pricing.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Banner Pricing</h4>
+<p style="white-space: pre-wrap;">Get the banner pricing information by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/pricing.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner pricing for such banner</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Banner Pricing</h4>
+<p style="white-space: pre-wrap;">Update the banner pricing information by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/pricing.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Request Parameters:</strong></p>
+<p>price - banner price as a double<br>
+paymentModel - payment model as a string. Should be one of following: CPM, CPC, CPA</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Banner Country Pricing</h4>
+<p style="white-space: pre-wrap;">Update the country banner pricing information by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/pricing/{countryCode}.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. E.g. wrong types for parameters, no banner or country with such code exists, or banner pricing dis<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Request Parameters:</strong></p>
+<p>price - banner price as a double</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+countryCode - 2 symbol country code corresponding to ISO 3166<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Update Banner Country Pricing Batch</h4>
+<p style="white-space: pre-wrap;">Update the country banner pricing information by banner id from csv file.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/pricing/batch<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner exists, or banner pricing disabled for the given banne<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Request Parameters:</strong></p>
+<p>countryPrices - csv formatted file with prices by countries</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+countryPrices - csv formatted file with prices by countries<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Disable Banner Frequency Capping</h4>
+<p style="white-space: pre-wrap;">Disables banner frequency capping.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/capping/frequency.do<br>
+<strong>Method:</strong> DELETE<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Advertising Categories</h4>
+<p style="white-space: pre-wrap;">Get the list of all configured advertising categories.</p>
+<p><strong>URL:</strong> /rest-api/categories/advertising.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json<br>
+<strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+<strong>Response sample:</strong><br>
+200 OK<br>
+<strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Publishing Categories</h4>
+<p style="white-space: pre-wrap;">Get the list of all configured publishing categories.</p>
+<p><strong>URL:</strong> /rest-api/categories/publishing.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>401 Unauthorized - authentication error</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username</p>
+<p><!-- NEXT TITLE --></p>
+<p><!-- NEXT TITLE --></p>
+<h4>Update Banner Frequency Capping</h4>
+<p style="white-space: pre-wrap;">Update the banner frequency capping information by banner id.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/capping/frequency.do<br>
+<strong>Method:</strong> POST<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong></p>
+<p>400 Bad Request - wrong request format. E.g. wrong types for parameters or no banner with such id exists<br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions</p>
+<p><strong>Request Parameters:</strong></p>
+<p>amount - number of events as a double<br>
+periodType - period type as a string. Should be one of following: HOUR,DAY,WEEK,MONTH,YEAR<br>
+flat - enforce uniform distribution of events within time frame (boolean).<br>
+period - number of periods as long.</p>
+<p><strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong></p>
+<p>hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+<!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get linked banners for placement</h4>
+<p><strong>URL:</strong> /rest-api/banner/placement/{placementId}/banners.do</p>
+<p><strong>Method:</strong> GET.</p>
+<p><strong>Response format:</strong> application/json.</p>
+<p><strong>Error codes:</strong></p>
+<ul>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+<li>404 Not Found - no placement for such id found.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.<br>
+<code><br>
+{id: 1, name: "bannerName1"}<br>
+</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash - a MD5 digest of concatenated username's md5 password and the given timestamp;</li>
+<li>timestamp - UNIX timestamp used in hash generation;</li>
+<li>username - the given username;</li>
+<li>placementId - the given placement id.</li>
+</ul>
+<p><!-- NEXT TITLE --></p>
+<p><!-- NEXT TITLE --></p>
+<h4>Get the available application advertising networks</h4>
+<p><strong>URL:</strong> /rest-api/banner/applicationnetworks.do.</p>
+<p><strong>Method:</strong> GET.</p>
+<p><strong>Response format:</strong> application/json.</p>
+<p><strong>Error codes:</strong></p>
+<ul>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+<li>404 Not Found - no banner for such id found.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username.</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get the list of all advertisers of given user account with campaigns and banners</h4>
+<p>Requires ALL or SHARED level on VIEW permission for INVENTORY items.<br>
+When SHARED level being used, share of any type must be present between requester and entity being requested.</p>
+<p><strong>URL:</strong> /rest-api/advertisers-tree.do.</p>
+<p><strong>Method:</strong> GET.</p>
+<p><strong>Response format:</strong> application/json.</p>
+<p><strong>Error codes:</strong></p>
+<ul>
+<li>401 Unauthorized - authentication error</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.<br>
+<code><br>
+[{"id":1,"name":"First Advertiser", "campaigns":[...,"banners":[...]]},…]<br>
+</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username;</li>
+<li>advertisingCategories - IDs of advertising categories to filter down result to (optional).</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get the list of all mobile advertising networks</h4>
+<p><strong>URL:</strong> /rest-api/adnetworks/mobileNetworks.do.</p>
+<p><strong>Method:</strong> GET.</p>
+<p><strong>Response format:</strong> application/json.</p>
+<p><strong>Error codes:</strong></p>
+<ul>
+<li>401 Unauthorized - authentication error</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.<br>
+<code><br>
+[{"id":1, "name":"First Placement"}, ...]<br>
+</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username.</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get the AdUnit list</h4>
+<p><strong>URL:</strong> /rest-api/adunit/list.do.<br>
+<strong>Method:</strong> GET.<br>
+<strong>Response format:</strong> application/json.<br>
+<strong>Error codes:</strong></p>
+<ul>
+<li>401 Unauthorized - authentication error.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.<br>
+<code><br>
+[{"id":1,"height":250,"width":300,"name":"Medium Rectangle (300x250)","custom":false},{"id":2,"height":150,"width":180,"name":"Rectangle (180x150)","custom":false}, ...]<br>
+</code><br>
+<strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username.</li>
+</ul>
+<p><!-- NEXT TITLE --></p>
+<h3 id="actman" align="center">Action Management API</h3>
+<p><!-- NEXT TITLE --></p>
+<h4>Get all actions shared to user</h4>
+<p><strong>URL:</strong> /rest-api/actions.do.<br>
+<strong>Method:</strong> GET.<br>
+<strong>Response format:</strong> application/json.<br>
+<strong>Error codes:</strong></p>
+<ul>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username.</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get the action by action key</h4>
+<p><strong>URL:</strong> /rest-api/action/{actionKey}.do.</p>
+<p><strong>Method:</strong> GET.</p>
+<p><strong>Response format:</strong> application/json.</p>
+<p><strong>Error codes:</strong></p>
+<ul>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+<li>404 Not Found - no action with given actionKey found for given campaign.</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username.</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Updates action</h4>
+<p><strong>URL:</strong> /rest-api/action/{actionKey}/update.do.</p>
+<p><strong>Method:</strong> POST.</p>
+<p><strong>Response format:</strong> application/json.</p>
+<p><strong>Error codes:</strong></p>
+<ul>
+<li>400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists.</li>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username;</li>
+<li>key - action key;</li>
+<li>name - action name;</li>
+<li>clickToConversionTimeFrame - period for click to conversion;</li>
+<li>clickToConversionTimeFramePeriodType — period type, available values: HOUR, DAY, WEEK, MONTH, YEAR;</li>
+<li>viewToConversionTimeFrame — period  for view to conversion;</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Creates new action</h4>
+<p><strong>URL:</strong> /rest-api//action/create.do.<br>
+<strong>Method:</strong> POST.<br>
+<strong>Response format:</strong> application/json.<br>
+<strong>Error codes:</strong></p>
+<ul>
+<li>400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists.</li>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username;</li>
+<li>name  — action name;</li>
+<li>clickToConversionTimeFrame - period for click to conversion;</li>
+<li>clickToConversionTimeFramePeriodType — period type, available values: HOUR, DAY, WEEK, MONTH, YEAR;</li>
+<li>viewToConversionTimeFrame — period  for view to conversion;</li>
+<li>viewToConversionTimeFramePeriodType — period type, available values: HOUR, DAY, WEEK, MONTH, YEAR.</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Removes action by action key</h4>
+<p><strong>URL:</strong> /rest-api//action/{actionKey}/delete.do.<br>
+<strong>Method:</strong> DELETE.<br>
+<strong>Response format:</strong> application/json.<br>
+<strong>Error codes:</strong></p>
+<ul>
+<li>400 Bad Request - wrong request format. E.g. wrong types for parameters or no campaign with such id exists.</li>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+<li>404 Not Found - no action with given actionKey found for given campaign.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.<br>
+<strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username.</li>
+</ul>
+<p><!-- NEXT TITLE --></p>
+<h3 id="tempman" align="center">Templates Management API</h3>
+<p><!-- NEXT TITLE --></p>
+<h4>Get the list of all template properties required|supported by given template</h4>
+<p><strong>URL:</strong> /rest-api/template/{templateId}/properties.do.</p>
+<p><strong>Method:</strong> GET.</p>
+<p><strong>Response format:</strong> application/json.</p>
+<p><strong>Error codes:</strong></p>
+<ul>
+<li>401 Unauthorized - authentication error.</li>
+<li>403 Forbidden - not enough permissions.</li>
+<li>404 Not Found - no template for such id found.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.<br>
+<code><br>
+[{"allowedContentTypes":"image/png","required":true,"key":"$$BANNER_SMALL$$"},<br>
+{"allowedContentTypes":"image/png","required":true,"key":"$$IMG_1$$"},<br>
+{"maxLength":255,"required":true,"url":false,"key":"$$LANDING_URL$$"}]<br>
+</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username;</li>
+<li>templateId the given template id.</li>
+</ul>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get the list of all templates available to a user</h4>
+<p><strong>URL:</strong> /rest-api/template/list.do.<br>
+<strong>Method:</strong> GET.<br>
+<strong>Response format:</strong> application/json.<br>
+<strong>Error codes:</strong></p>
+<ul>
+<li>401 Unauthorized - authentication error.</li>
+</ul>
+<p><strong>Response sample:</strong><br>
+200 OK.<br>
+<code><br>
+[{"id":1,"title":"Foo","propertiesCount":10,"placementType":"NON_STANDARD_SITE_PLACEMENT"},<br>
+{"id":2,"title":"Bar","propertiesCount":2,"placementType":"SITE_PLACEMENT"}]<br>
+</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>hash — an MD5 digest of a concatenated username's md5 password and a given timestamp;</li>
+<li>timestamp — UNIX timestamp used for hash generation;</li>
+<li>username — a given username.</li>
+</ul>
+<p><!-- NEXT TITLE --></p>
+<p><!-- NEXT TITLE --></p>
+<h4>Get Browsers</h4>
+<p style="white-space: pre-wrap;">Get available major browsers values for browser targeting type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/browsers/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no targeting with given id found for given banner<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Chrome Browsers</h4>
+<p style="white-space: pre-wrap;">Get available chrome browser version values for browser targeting type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/browsers/chrome/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Country Regions</h4>
+<p style="white-space: pre-wrap;">Get available regions for given country.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/country/region/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+countryCode - the given country code</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Device Format Values</h4>
+<p style="white-space: pre-wrap;">Get available device formats values for device format targeting type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/device/format/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Device Values</h4>
+<p style="white-space: pre-wrap;">Get available devices values for device targeting type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/device/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Device Vendor Values</h4>
+<p style="white-space: pre-wrap;">Get available device vendor values for device vendor targeting type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/device/vendor/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Firefox Browsers</h4>
+<p style="white-space: pre-wrap;">Get available firefox browser version values for browser targeting type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/browsers/firefox/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get IE Browsers</h4>
+<p style="white-space: pre-wrap;">Get available Safari browser version values for browser targeting type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/browsers/ie/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Languages</h4>
+<p style="white-space: pre-wrap;">Get available languages.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/language/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Mobile Carriers</h4>
+<p style="white-space: pre-wrap;">Get available mobile carriers names for mobile carrier targeting type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/mobilecarriers/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no targeting with given id found for given banner<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get OS Values</h4>
+<p style="white-space: pre-wrap;">Get available operating systems values for operating system targeting type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/os/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get OS Versions by OS Name</h4>
+<p style="white-space: pre-wrap;">Gets available versions of an OS for operating system targeting type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/os/{osName}/versions.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no campaign found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given campaign id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Regions Cities</h4>
+<p style="white-space: pre-wrap;">Get available cities for given country region.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/country/region/city/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id<br>
+countryCode - the given country code<br>
+regionName - the given region name</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Safari Browsers</h4>
+<p style="white-space: pre-wrap;">Get available Safari browser version values for browser targeting type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/browsers/safari/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --><br>
+<!-- NEXT TITLE --></p>
+<h4>Get Screen Resolution Values</h4>
+<p style="white-space: pre-wrap;">Get available screen resolutions values for screen resolution targeting type.</p>
+<p><strong>URL:</strong> /rest-api/banner/{bannerId}/targeting/resolution/values.do<br>
+<strong>Method:</strong> GET<br>
+<strong>Response format:</strong> application/json</p>
+<p><strong>Error codes:</strong><br>
+401 Unauthorized - authentication error<br>
+403 Forbidden - not enough permissions<br>
+404 Not Found - no banner found<br>
+<strong>Response sample:</strong><br>
+200 OK</p>
+<p><strong>Parameters:</strong><br>
+hash -&nbsp;an MD5 digest of a concatenated username's md5 password and a given timestamp<br>
+timestamp - UNIX timestamp used in hash generation<br>
+username - the given username<br>
+bannerId - the given banner id</p>
+<p><!-- NEXT TITLE --></p>
+</div>
+<div class="postinfo">
+<div class="authorinfo">
+<!--By epadmin<br />
+24 / 10 / 2013 <br />-->
+ 
+          
+</div>
+
+<!--<div class="share">
+  <div class="shareitem">
+      <g:plusone size="tall" annotation="none" href="http://epom.com/support/advertiser-api-2/"></g:plusone>
+  </div>
+  <div class="shareitem">
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://epom.com/support/advertiser-api-2/" data-count="horizontal" rel="nofollow">Tweet</a>
+  </div>
+  <div class="shareitem">
+      <fb:like href="http://epom.com/support/advertiser-api-2/" layout="button_count" show_faces="true" width="90" font="lucida grande"></fb:like>
+  </div>
+</div>-->
+
+</div>
+<div class="comments">
+<!-- You can start editing here. -->
+			<!-- If comments are closed. -->
+		<!--p class="nocomments">Comments are closed.</p-->
+	</div>
+<!--<div class="morelink"><a href="--><!--">more</a></div>-->
+</div>
+
+
+
+</div>
+<div class="left">
+
+<!--<span class="menuTitle">Search</span>-->
+		<div id="search">
+	<form method="get" id="searchform" action="http://epom.com/support/">
+		<div>
+			<input name="s" id="s" class="absmid" style="width: 190px;" type="text">
+			<input src="advertiser_files/searchbtn.png" class="absmid" type="image">
+		</div>
+	</form>
+	</div>
+<li id="collapscat-7" class="widget widget_collapscat"><h2 class="widgettitle">Publisher &amp; Advertiser Accounts</h2>
+<ul id="widget-collapscat-7-top" class="collapsing categories list">
+<ul><li class="collapsing categories item"><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_002.html" title="Quick Start Guide">Quick Start Guide</a></li>
+<li class="collapsing categories item"><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_005.html" title="Epom Referral Program">Epom Referral Program</a></li>
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_006.html" title="View all posts filed under Inventory Management">Inventory Management</a></span>
+<div id="collapsCat-3:7" style="display: none;">
+<ul><li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_007.html" title="View all posts filed under Plugins for WordPress and Joomla!">Plugins for WordPress and Joomla!</a></span>
+<div id="collapsCat-76:7" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+</ul>          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_008.html" title="View all posts filed under Campaign Management">Campaign Management</a></span>
+<div id="collapsCat-88:7" style="display: none;">
+<ul><li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_009.html" title="View all posts filed under Targeting">Targeting</a></span>
+<div id="collapsCat-90:7" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_010.html" title="View all posts filed under CPA Campaign Management">CPA Campaign Management</a></span>
+<div id="collapsCat-114:7" style="display: none;">
+<ul><li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_011.html" title="View all posts filed under Server to server tracking">Server to server tracking</a></span>
+<div id="collapsCat-145:7" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+</ul>          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_012.html" title="View all posts filed under Third Party Tracking">Third Party Tracking</a></span>
+<div id="collapsCat-115:7" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+</ul>          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_013.html" title="View all posts filed under Reports &amp; Analytics">Reports &amp; Analytics</a></span>
+<div id="collapsCat-92:7" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_014.html" title="View all posts filed under Rich Media Ads">Rich Media Ads</a></span>
+<div id="collapsCat-93:7" style="display: none;">
+<ul><li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_015.html" title="View all posts filed under Rich Media Templates for Display">Rich Media Templates for Display</a></span>
+<div id="collapsCat-98:7" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_016.html" title="View all posts filed under Rich Media Templates for Mobile Web">Rich Media Templates for Mobile Web</a></span>
+<div id="collapsCat-99:7" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_017.html" title="View all posts filed under Rich Media Templates for Application Ad Campaigns">Rich Media Templates for Application Ad Campaigns</a></span>
+<div id="collapsCat-100:7" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+</ul>          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_018.html" title="View all posts filed under Administration">Administration</a></span>
+<div id="collapsCat-96:7" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+</ul><li style="display: none;"></li>
+</ul>
+</li>
+<li id="collapscat-9" class="widget widget_collapscat"><h2 class="widgettitle">Network Account</h2>
+<ul id="widget-collapscat-9-top" class="collapsing categories list">
+<ul><li class="collapsing categories item"><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_003.html" title="Quick Start Guide">Quick Start Guide</a></li>
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_019.html" title="View all posts filed under White Labeling">White Labeling</a></span>
+<div id="collapsCat-127:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_020.html" title="View all posts filed under System Settings">System Settings</a></span>
+<div id="collapsCat-128:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_021.html" title="View all posts filed under Users and Roles">Users and Roles</a></span>
+<div id="collapsCat-129:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_022.html" title="View all posts filed under Default Roles Settings">Default Roles Settings</a></span>
+<div id="collapsCat-130:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_023.html" title="View all posts filed under Inventory">Inventory</a></span>
+<div id="collapsCat-131:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_024.html" title="View all posts filed under Campaigns">Campaigns</a></span>
+<div id="collapsCat-132:9" style="display: none;">
+<ul><li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_025.html" title="View all posts filed under Campaigns and Banners Prioritization">Campaigns and Banners Prioritization</a></span>
+<div id="collapsCat-133:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_026.html" title="View all posts filed under Campaings and Banners Settings">Campaings and Banners Settings</a></span>
+<div id="collapsCat-134:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_027.html" title="View all posts filed under CPA Campaigns">CPA Campaigns</a></span>
+<div id="collapsCat-135:9" style="display: none;">
+<ul><li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_028.html" title="View all posts filed under Server-to-Server Tracking">Server-to-Server Tracking</a></span>
+<div id="collapsCat-144:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+</ul>          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_029.html" title="View all posts filed under 3rd Party Tracking">3rd Party Tracking</a></span>
+<div id="collapsCat-136:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_030.html" title="View all posts filed under Rich Media">Rich Media</a></span>
+<div id="collapsCat-137:9" style="display: none;">
+<ul><li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_031.html" title="View all posts filed under Templates for Display">Templates for Display</a></span>
+<div id="collapsCat-138:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_032.html" title="View all posts filed under Templates for Mobile Web">Templates for Mobile Web</a></span>
+<div id="collapsCat-139:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_033.html" title="View all posts filed under Templates for Application Ad Campaigns">Templates for Application Ad Campaigns</a></span>
+<div id="collapsCat-140:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+</ul>          </div>
+         </li> <!-- ending subcategory -->
+</ul>          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_034.html" title="View all posts filed under Reports">Reports</a></span>
+<div id="collapsCat-141:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable"><span class="collapsing categories expand"><span class="sym"><img src="advertiser_files/expand.gif" alt="expand"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_035.html" title="View all posts filed under Billing">Billing</a></span>
+<div id="collapsCat-142:9" style="display: none;">
+          </div>
+         </li> <!-- ending subcategory -->
+<li class="collapsing categories expandable parent"><span class="collapsing categories collapse"><span class="sym"><img src="advertiser_files/collapse.gif" alt="collapse"></span><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_036.html" title="View all posts filed under API Reference">API Reference</a></span>
+<div id="collapsCat-143:9" style="display: block;">
+<ul><li class="collapsing categories item self"><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_037.html" title="Advertiser API">Advertiser API</a></li>
+<li class="collapsing categories item"><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_038.html" title="Publisher API">Publisher API</a></li>
+<li class="collapsing categories item"><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_039.html" title="Sign-up REST API">Sign-up REST API</a></li>
+<li class="collapsing categories item"><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_040.html" title="Analytics REST API">Analytics REST API</a></li>
+<li class="collapsing categories item"><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_041.html" title="Login REST API">Login REST API</a></li>
+<li class="collapsing categories item"><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_042.html" title="API Requests Sample Scripts">API Requests Sample Scripts</a></li>
+</ul>          </div>
+         </li> <!-- ending subcategory -->
+</ul><li style="display: none;"></li>
+</ul>
+</li>
+
+<span class="menuTitle" style="display: none;">Epom Market</span>
+<div class="links" style="display: none;">
+    <ul>
+            <li>
+            <a indepth="true" title="Post: How to Activate Epom Market" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_043.html">How to Activate Epom Market</a>
+        </li>
+            <li>
+            <a indepth="true" title="Post: Working with Epom Market" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_044.html">Working with Epom Market</a>
+        </li>
+            <li>
+            <a indepth="true" title="Post: Epom Direct Ads" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_045.html">Epom Direct Ads</a>
+        </li>
+            <li>
+            <a indepth="true" title="Post: Forgot Epom Market password" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_046.html">Forgot Epom Market password</a>
+        </li>
+            <li>
+            <a indepth="true" title="Post: Epom Market revenue" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default_047.html">Epom Market revenue</a>
+        </li>
+            </ul>
+</div>
+
+<span class="menuTitle" style="display: none;">Video Guide</span>
+<div class="links">
+    <ul>
+            </ul>
+</div>
+
+<span class="menuTitle"><a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/glossary-posts.html">Glossary</a></span>
+</div>
+
+
+
+
+<div class="footer">
+<div class="inner_grad"></div>
+<div class="inner_links">
+
+<div class="ll">Copyright © Epom Inc. All Rights Reserved</div>
+<div class="lr">
+<a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/default.html">Home</a>&nbsp;&nbsp;
+<a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/about.html" target="_top">About</a>&nbsp;&nbsp;
+<a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/contact_us.html" target="_top">Contact Us</a>&nbsp;&nbsp;
+<a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/client_support.html" target="_top">Client Support</a>&nbsp;&nbsp;
+<a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/terms.html" target="_top">Terms of Service</a>&nbsp;&nbsp;
+<a indepth="true" href="file:///home/adrian/.mozilla/firefox/60377aof.default/ScrapBook/data/20150713132650/privacy_policy.html" target="_top">Privacy</a>
+</div>
+
+</div>
+</div>
+
+</div>
+
+  
+
+
+
+
+
+
+
+ 
+</div>
+
+
+</body></html>

@@ -16,3 +16,5 @@ coverage/
 
 test/dummy/config/initializers/epom.rb
 test/dummy/config/initializers/epom.rb
+
+lib/parser/doc/
