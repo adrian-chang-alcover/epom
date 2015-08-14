@@ -474,11 +474,6 @@ module Epom
             :body_parameters => [:bannerIds, :advertisingCategories, :hash, :timestamp, :username],
             :method => :get
         },
-        :get_publishing_categories => {
-            :url => '/rest-api/categories/publishing.do',
-            :body_parameters => [:hash, :timestamp, :username],
-            :method => :get
-        },
         :update_banner => {
             :url => '/rest-api/banner/BANNER_ID/update.do',
             :url_parameters => [:bannerId],

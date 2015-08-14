@@ -13,6 +13,13 @@ module Epom
               :body_parameters => [:hash, :timestamp, :username],
               :method => :post
           },
+          :set_placement_pricing => {
+              :url => '/rest-api/placements/PLACEMENT_ID/pricing.do?username=USERNAME&timestamp=TIMESTAMP&hash=HASH',
+              :url_parameters => [:placementId, :hash, :timestamp, :username],
+              :body_parameters => [],
+              :method => :post,
+              :headers => {'Content-type' => 'application/json'}
+          },
           :get_placement_summary => {
               :url => '/rest-api/placements/summary.do',
               :body_parameters => [:placementIds, :publishingCategories, :hash, :timestamp, :username],
