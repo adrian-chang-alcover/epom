@@ -77,7 +77,21 @@ module Epom
 
     def self.method_missing(name, *args)
       if self.extended_methods.keys.include?(name.to_sym)
-        self.generic_method(name, *args)
+        if args.count == 1 and args[0].is_a?(Hash)
+          signature = extended_methods[name]
+          url_params_signature = signature[:url_parameters]
+          body_params_signature = signature[:body_parameters]
+
+          args[0].symbolize_keys!
+          url_params = args[0].select{|key, value| url_params_signature.include? key}
+          body_params = args[0].select{|key, value| body_params_signature.include? key}
+
+          self.generic_method(name, url_params, body_params)
+        elsif args.count == 2
+          self.generic_method(name, args[0], args[1])
+        else
+          super
+        end
       else
         super
       end

@@ -57,13 +57,6 @@ module Epom
               :method => :post,
               :headers => {'Content-type' => 'application/json'}
           },
-          :set_placement_pricing => {
-              :url => '/rest-api/placements/PLACEMENT_ID/pricing.do?username=USERNAME&timestamp=TIMESTAMP&hash=HASH',
-              :url_parameters => [:placementId, :hash, :timestamp, :username],
-              :body_parameters => [],
-              :method => :post,
-              :headers => {'Content-type' => 'application/json'}
-          },
           :update_country_pricing => {
               :url => '/rest-api/sites/SITE_ID/pricing/COUNTRY_CODE.do',
               :url_parameters => [:siteId, :countryCode],
