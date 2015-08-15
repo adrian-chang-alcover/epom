@@ -64,6 +64,9 @@ module Epom
     end
 
     def self.replace_params_in_url(url, url_params)
+      url.gsub!('USERNAME', url_params[:username].to_s) if url.include?('USERNAME')
+      url.gsub!('TIMESTAMP', url_params[:timestamp].to_s) if url.include?('TIMESTAMP')
+      url.gsub!('HASH', url_params[:hash].to_s) if url.include?('HASH')
       url.gsub!('PLACEMENT_ID', url_params[:placementId].to_s) if url.include?('PLACEMENT_ID')
       url
     end
