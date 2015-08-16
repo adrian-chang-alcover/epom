@@ -48,6 +48,7 @@ body_params = {
 }
 
 response = Epom::Auth.register_user(url_params, body_params)
+# or response = Epom::Auth.register_user(url_params.merge(body_params))
  ```
 
  The following example list all sites that belongs to a specific user:
@@ -58,9 +59,8 @@ body_params = {
 	:timestamp => timestamp, 
 	:username => ENV['username'],
 }
-url_params = {}
 
-response = Epom::Site.get_sites(url_params, body_params)
+response = Epom::Site.get_sites(body_params)
 ```
 
 The following example set the price of a specific site:

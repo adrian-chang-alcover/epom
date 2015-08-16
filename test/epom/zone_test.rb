@@ -56,7 +56,7 @@ class ZoneTest < ActiveSupport::TestCase
     	:zoneId => ENV['zone_id']
     }
 
-    response = Epom::Zone.get_zone_placements(url_params, body_params)
+    response = Epom::Zone.get_zone_placements(url_params.merge(body_params))
     assert_instance_of Array, response
     if response.count > 0
     	first = response[0]
