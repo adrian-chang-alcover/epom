@@ -17,7 +17,8 @@ class AnalyticTest < ActiveSupport::TestCase
     body_params = {    
       :displayIds => true,
       :range => 'CURRENT_MONTH',
-      :groupBy => 'ADVERTISER,CAMPAIGN,BANNER,SITE,ZONE,PLACEMENT',
+      :groupBy => 'ADVERTISER,CAMPAIGN,BANNER,SITE,ZONE,PLACEMENT,CHANNEL,COUNTRY',
+      :groupRange => 'DAY'
       # :eqLong => {'ADVERTISER' => ENV['advertiser_id'], 'SITE' => ENV['site_id']}
     }
 
