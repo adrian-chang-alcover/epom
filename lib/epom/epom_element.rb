@@ -54,8 +54,15 @@ module Epom
       if body_params_signature.include?(:username) and not body_params[:username]
         body_params[:username] = Epom.config.username
       end
+      
       if url_params_signature.include?(:login) and not url_params[:login]
         url_params[:login] = Epom.config.username
+      end
+      if url_params_signature.include?(:hash) and not url_params[:hash]
+        url_params[:hash] = Epom.create_hash(Epom.create_hash(Epom.config.password), timestamp)
+      end
+      if url_params_signature.include?(:timestamp) and not url_params[:timestamp]
+        url_params[:timestamp] = timestamp
       end
 
       if params_validation(url_params, url_params_signature) and params_validation(body_params, body_params_signature)
