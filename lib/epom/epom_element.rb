@@ -55,6 +55,9 @@ module Epom
       if body_params_signature.include?(:username) and not body_params[:username]
         body_params[:username] = Epom.config.username
       end
+      if url_params_signature.include?(:login) and not url_params[:login]
+        url_params[:login] = Epom.config.username
+      end
 
       if params_validation(url_params, url_params_signature) and params_validation(body_params, body_params_signature)
         http_proxy Epom.config.proxy_address, Epom.config.proxy_port, Epom.config.proxy_user, Epom.config.proxy_password
