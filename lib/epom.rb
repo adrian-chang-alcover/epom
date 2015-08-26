@@ -3,6 +3,7 @@ require 'digest'
 
 require 'epom/ad_unit'
 require 'epom/advertiser'
+require 'epom/analytic'
 require 'epom/auth'
 require 'epom/banner'
 require 'epom/campaign'
