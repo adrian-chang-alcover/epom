@@ -128,7 +128,7 @@ class AdvertiserTest < ActiveSupport::TestCase
     if Epom.config.epom_server == 'https://n29.epom.com/'
       advertisers = Epom::Advertiser.get_advertiser_permissions_for_user({})
       advertisers.each do |advertiser|
-        if advertiser['shareType'] == "Is Owner" and advertiser['id'] != ENV['advertiser_id']
+        if advertiser['shareType'] == "Is Owner" and advertiser['id'] != ENV['advertiser_id'].to_i
           Epom::Advertiser.delete_advertiser({advertiserId: advertiser['id']})
         end
       end

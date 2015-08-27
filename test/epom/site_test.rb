@@ -161,7 +161,7 @@ class SiteTest < ActiveSupport::TestCase
     if Epom.config.epom_server == 'https://n29.epom.com/'
       sites = Epom::Site.get_sites({})
       sites.each do |site|
-        Epom::Site.delete_site({siteId: site['id']}) unless site['id'] == ENV['site_id']
+        Epom::Site.delete_site({siteId: site['id']}) unless site['id'] == ENV['site_id'].to_i
       end
     end
   end
