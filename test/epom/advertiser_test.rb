@@ -124,5 +124,16 @@ class AdvertiserTest < ActiveSupport::TestCase
     assert_equal "/rest-api/advertiser/#{ENV['advertiser_id']}/campaigns.do", Epom::Advertiser.replace_params_in_url('/rest-api/advertiser/ADVERTISER_ID/campaigns.do', {:advertiserId => ENV['advertiser_id']})
   end
 
+  test 'garbage_collector' do
+    if Epom.config.epom_server == 'https://n29.epom.com/'
+      advertisers = Epom::Advertiser.get_advertiser_permissions_for_user({})
+      advertisers.each do |advertiser|
+        if advertiser['shareType'] == "Is Owner" and advertiser['id'] != ENV['advertiser_id']
+          Epom::Advertiser.delete_advertiser({advertiserId: advertiser['id']})
+        end
+      end
+    end
+  end
+
   define_get_tests_auto(Epom::Advertiser)
 end

@@ -158,9 +158,11 @@ class SiteTest < ActiveSupport::TestCase
   # end
 
   test 'garbage_collector' do
-    sites = Epom::Site.get_sites({})
-    sites.each do |site|
-      Epom::Site.delete_site({siteId: site['id']}) unless site['id'] == ENV['site_id']
+    if Epom.config.epom_server == 'https://n29.epom.com/'
+      sites = Epom::Site.get_sites({})
+      sites.each do |site|
+        Epom::Site.delete_site({siteId: site['id']}) unless site['id'] == ENV['site_id']
+      end
     end
   end
 
