@@ -55,13 +55,13 @@ module Epom
         body_params[:username] = Epom.config.username
       end
       
-      if url_params_signature.include?(:login) and not url_params[:login]
+      if url_params_signature and url_params_signature.include?(:login) and not url_params[:login]
         url_params[:login] = Epom.config.username
       end
-      if url_params_signature.include?(:hash) and not url_params[:hash]
+      if url_params_signature and url_params_signature.include?(:hash) and not url_params[:hash]
         url_params[:hash] = Epom.create_hash(Epom.create_hash(Epom.config.password), timestamp)
       end
-      if url_params_signature.include?(:timestamp) and not url_params[:timestamp]
+      if url_params_signature and url_params_signature.include?(:timestamp) and not url_params[:timestamp]
         url_params[:timestamp] = timestamp
       end
 
