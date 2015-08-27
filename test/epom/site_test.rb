@@ -157,5 +157,14 @@ class SiteTest < ActiveSupport::TestCase
   #   assert_not_instance_of Fixnum, response
   # end
 
+  test 'garbage_collector' do
+    if Epom.config.epom_server == 'https://n29.epom.com/'
+      sites = Epom::Site.get_sites({})
+      sites.each do |site|
+        Epom::Site.delete_site({siteId: site['id']}) unless site['id'] == ENV['site_id']
+      end
+    end
+  end
+
   define_get_tests_auto(Epom::Site)
 end
