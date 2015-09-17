@@ -312,46 +312,46 @@ class CampaignTest < ActiveSupport::TestCase
   ## Campaign Adjusted CPM API
   ##########################
 
-  test "add_fixed_cpm_country_pricing" do
-    timestamp = Time.now.to_i * 1000
-    url_params = {
-      :campaignId => ENV['campaign_id']
-    }
-    body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
-      :countryCode => ENV['country_code'],
-      :value => '2.5',
-      :date => DateTime.now.strftime('%Y-%m-%d-%H-%M')
-    }
+  # test "add_fixed_cpm_country_pricing" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :campaignId => ENV['campaign_id']
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :countryCode => ENV['country_code'],
+  #     :value => '2.5',
+  #     :date => DateTime.now.strftime('%Y-%m-%d-%H-%M')
+  #   }
       
-    response = Epom::Campaign.add_fixed_cpm_country_pricing(url_params, body_params)
-    assert_instance_of Hash, response
-    assert_instance_of Fixnum, response['id']
-    assert response['success']
-  end
+  #   response = Epom::Campaign.add_fixed_cpm_country_pricing(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   assert_instance_of Fixnum, response['id']
+  #   assert response['success']
+  # end
 
-  test "adjusted_cpm_list" do
-    timestamp = Time.now.to_i * 1000
-    url_params = {
-      :campaignId => ENV['campaign_id']
-    }
-    body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
-    }
+  # test "adjusted_cpm_list" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :campaignId => ENV['campaign_id']
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #   }
       
-    response = Epom::Campaign.adjusted_cpm_list(url_params, body_params)
-    assert_instance_of Array, response
-    if response.count > 0
-      first = response[0]
-      assert_instance_of Fixnum, first['id']
-      assert_instance_of Float, first['value']
-      assert_instance_of String, first['country']
-    end
-  end
+  #   response = Epom::Campaign.adjusted_cpm_list(url_params, body_params)
+  #   assert_instance_of Array, response
+  #   if response.count > 0
+  #     first = response[0]
+  #     assert_instance_of Fixnum, first['id']
+  #     assert_instance_of Float, first['value']
+  #     assert_instance_of String, first['country']
+  #   end
+  # end
 
   ##########################
   ## Campaign Action Management API
