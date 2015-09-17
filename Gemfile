@@ -11,4 +11,4 @@ gemspec
 # your gem to rubygems.org.
 
 gem "codeclimate-test-reporter", group: :test, require: nil
-gem 'byebug', '~> 4.0', '>= 4.0.3'
+gem 'byebug', '~> 4.0', '>= 4.0.3', group: :test
