@@ -439,22 +439,22 @@ class BannerTest < ActiveSupport::TestCase
     response
   end  
 
-  test "create_or_update_banner_placements" do
-    timestamp = Time.now.to_i * 1000
-    url_params = {
-      :bannerId => ENV['banner_id'],
-    }
-    body_params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
-      :timestamp => timestamp, 
-      :username => ENV['username'],
-      :ids => ENV['placement_id']
-    }
+  # test "create_or_update_banner_placements" do
+  #   timestamp = Time.now.to_i * 1000
+  #   url_params = {
+  #     :bannerId => ENV['banner_id'],
+  #   }
+  #   body_params = {
+  #     :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  #     :timestamp => timestamp, 
+  #     :username => ENV['username'],
+  #     :ids => ENV['placement_id']
+  #   }
 
-    response = Epom::Banner.create_or_update_banner_placements(url_params, body_params)
-    assert_instance_of Hash, response
-    assert response['success']
-  end  
+  #   response = Epom::Banner.create_or_update_banner_placements(url_params, body_params)
+  #   assert_instance_of Hash, response
+  #   assert response['success']
+  # end  
 
   test "update_banner_pricing" do
     timestamp = Time.now.to_i * 1000
