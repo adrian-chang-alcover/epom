@@ -19,7 +19,9 @@ class AnalyticTest < ActiveSupport::TestCase
       :range => 'CURRENT_MONTH',
       :groupBy => 'ADVERTISER,CAMPAIGN,BANNER,SITE,ZONE,PLACEMENT,CHANNEL,COUNTRY',
       # :groupRange => 'HOUR',
-      :eqLong => {'ADVERTISER' => 1252, 'SITE' => 1059}
+      # :eqLong => {'ADVERTISER' => 1252, 'SITE' => 1059},
+      :eqLong => {'CAMPAIGN' => 2679},
+      :eqStr => {'COUNTRY' => 'IN', 'CHANNEL' => 'Other'}
     }
 
     response = Epom::Analytic.analytics(url_params, body_params)
