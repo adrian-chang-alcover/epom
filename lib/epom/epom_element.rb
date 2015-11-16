@@ -90,8 +90,8 @@ module Epom
       if self.extended_methods.keys.include?(name.to_sym)
         if args.count == 1 and args[0].is_a?(Hash)
           signature = extended_methods[name]
-          url_params_signature = signature[:url_parameters]
-          body_params_signature = signature[:body_parameters]
+          url_params_signature = signature[:url_parameters] || []
+          body_params_signature = signature[:body_parameters] || []
 
           args[0].symbolize_keys!
           url_params = args[0].select{|key, value| url_params_signature.include? key}
