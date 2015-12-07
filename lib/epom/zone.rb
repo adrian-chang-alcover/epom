@@ -19,7 +19,7 @@ module Epom
           },
           :update_zone => {
               :url => '/rest-api/zones/update.do',
-              :body_parameters => [:zoneId, :siteId, :description, :name, :hash, :timestamp, :username],
+              :body_parameters => [:id, :siteId, :description, :name, :hash, :timestamp, :username],
               :method => :post
           },
           :create_zone => {
