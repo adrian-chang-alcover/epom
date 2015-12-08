@@ -33,7 +33,7 @@ class ZoneTest < ActiveSupport::TestCase
       :username => ENV['username'],
       :name => "zone #{timestamp}",
       :description => "description",
-      :zoneId => ENV['zone_id'],
+      :id => ENV['zone_id'],
       :siteId => ENV['site_id'] 
     }
     url_params = {
